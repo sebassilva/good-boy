@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Http } from '@angular/http'
 import { Storage } from '@ionic/storage';
-import { MainPage } from '../main/main';
+import { NewPage } from '../new/new';
 
 @IonicPage()
 @Component({
@@ -32,33 +32,39 @@ export class RegisterPage {
   }
 
   register(){
-    let newUser = this.userForm.value
-    newUser['type'] = "user"
-    newUser['img'] = "default"
-    newUser['sharingCode'] = "user"
-    newUser['docId'] = ""
-    newUser['docAddress'] = "", 
-    newUser["freeServices"] = 0
-    var link = 'http://localhost/api/user/new';
-    
-    this.http.post(link, newUser)
-    .subscribe(data => {
-      data = JSON.parse(data["_body"])
-      if(data.status == 0){
-        console.log(data['api_token'])
-        this.storage.set('api_token', data['api_token'])
-        this.navCtrl.setRoot( MainPage )
-
-      }else{
-        console.log("no se ha podido crear el usuario")
-      }
-
-
+    if(this.userForm.valid){
+      let newUser = this.userForm.value
+      newUser['type'] = "user"
+      newUser['img'] = "default"
+      newUser['sharingCode'] = "user"
+      newUser['docId'] = ""
+      newUser['docAddress'] = "", 
+      newUser["freeServices"] = 0
+      var link = 'http://localhost/api/user/new';
       
-    }, error => {
-        console.log("Ha ocurrido un error con la conexión al servidor");
-    });
-
+      this.http.post(link, newUser)
+      .subscribe(data => {
+        data = JSON.parse(data["_body"])
+        if(data.status == 0){
+          console.log(data['api_token'])
+          this.storage.set('api_token', data['api_token'])
+          this.navCtrl.setRoot( NewPage )
+  
+        }else{
+          console.log("no se ha podido crear el usuario")
+        }
+  
+  
+        
+      }, error => {
+          console.log("Ha ocurrido un error con la conexión al servidor");
+      });
+  
+    
+    
+    
+    }      
+   
   }
 
   ionViewDidLoad() {
