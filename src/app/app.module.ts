@@ -3,6 +3,7 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { Http, HttpModule } from '@angular/http'
 import { IonicStorageModule } from '@ionic/storage';
+import { Storage } from '@ionic/storage';
 
 import { MyApp } from './app.component';
 
@@ -14,6 +15,7 @@ import { LoginPage } from '../pages/login/login';
 import { RegisterPage } from '../pages/register/register';
 import { MainPage } from '../pages/main/main';
 import { NewPage } from '../pages/new/new';
+import { NewPetPage } from '../pages/new-pet/new-pet';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -26,14 +28,14 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     LoginPage, 
     RegisterPage, 
     MainPage, 
-    NewPage
+    NewPage, 
+    NewPetPage
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp), 
     HttpModule, 
-    IonicStorageModule.forRoot()
-  
+    IonicStorageModule.forRoot()  
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -43,7 +45,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     LoginPage, 
     RegisterPage, 
     MainPage, 
-    NewPage
+    NewPage, 
+    NewPetPage
   ],
   providers: [
     StatusBar,

@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { NewPetPage } from '../new-pet/new-pet';
 
 /**
- * Generated class for the MainPage page.
+ * Generated class for the SelectServicePage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -11,20 +10,16 @@ import { NewPetPage } from '../new-pet/new-pet';
 
 @IonicPage()
 @Component({
-  selector: 'page-main',
-  templateUrl: 'main.html',
+  selector: 'page-select-service',
+  templateUrl: 'select-service.html',
 })
-export class MainPage {
+export class SelectServicePage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad MainPage');
-  }
-
-  newPet(){
-    this.navCtrl.push(NewPetPage)
+    console.log('ionViewDidLoad SelectServicePage');
   }
 
 }

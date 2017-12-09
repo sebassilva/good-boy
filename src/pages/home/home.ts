@@ -17,9 +17,11 @@ export class HomePage {
   constructor(public navCtrl: NavController, public storage: Storage) {
     this.login = LoginPage;
     this.register = RegisterPage;
-    if(this.storage.get('api_token')){
-      this.navCtrl.setRoot( MainPage )
-    }
+    this.storage.get('api_token').then(val =>{
+      if(val){
+        this.navCtrl.setRoot( MainPage )        
+      }
+    })
   }
 
 }

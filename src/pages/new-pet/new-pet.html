@@ -1,0 +1,49 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Nueva Mascota</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <ion-list *ngIf="!formComplete">
+        
+           <form [formGroup]="userForm">
+        
+               <ion-item>
+                   <ion-label floating>Nombre</ion-label>
+                   <ion-input formControlName="name" type="text"></ion-input>
+               </ion-item>
+        
+               <ion-item>
+                   <ion-label floating>Raza</ion-label>
+                   <ion-input formControlName="breed" type="text"></ion-input>
+               </ion-item>
+ 
+              <ion-item>
+                  <ion-label>Perfil</ion-label>
+                  <ion-select 
+                  [(ngModel)]="profile" 
+                  multiple="true"
+                  formControlName="profile">
+                    <ion-option>Le gustan los perros</ion-option>
+                    <ion-option>Agresivo con humanos</ion-option>
+                    <ion-option>Agresivo con otros perros</ion-option>
+                    <ion-option>Se deja acariciar</ion-option>
+                  </ion-select>
+                </ion-item>
+        
+           </form>
+           <button ion-button full color="secondary" (click)="register()">Registrarse</button>             
+       </ion-list>
+
+
+       <!--Ya se ha agregado a la mascota-->
+       <ion-list *ngIf="formComplete">
+          <button ion-button full color="primary" (click)="continue()">Continuar</button>                       
+          <button ion-button full color="secondary" (click)="addMore()">Agregar otra mascota</button>                       
+      </ion-list>
+        
+</ion-content>

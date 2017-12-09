@@ -19,7 +19,7 @@ export class RegisterPage {
     public http: Http,
     public storage: Storage) {
 
-      this.userForm = formBuilder.group({
+      this.userForm = this.formBuilder.group({
         name: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('[a-zA-Z ]*'), Validators.required])],
         lastName: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('[a-zA-Z ]*'), Validators.required])],
         email: ['', Validators.compose([Validators.maxLength(30), Validators.required])],
@@ -38,16 +38,18 @@ export class RegisterPage {
       newUser['img'] = "default"
       newUser['sharingCode'] = "user"
       newUser['docId'] = ""
-      newUser['docAddress'] = "", 
+      newUser['docAddress'] = ""
       newUser["freeServices"] = 0
       var link = 'http://localhost/api/user/new';
       
       this.http.post(link, newUser)
       .subscribe(data => {
         data = JSON.parse(data["_body"])
+        console.log(data.status)
         if(data.status == 0){
           console.log(data['api_token'])
           this.storage.set('api_token', data['api_token'])
+          this.storage.set('user_id', data['user']['id'])
           this.navCtrl.setRoot( NewPage )
   
         }else{

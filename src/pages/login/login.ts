@@ -47,6 +47,7 @@ export class LoginPage {
         if(data.status == 0){
           console.log(data['api_token'])
           this.storage.set('api_token', data['api_token'])
+          this.storage.set('user_id', data['user']['id'])
           this.navCtrl.setRoot( MainPage )
   
         }else{
