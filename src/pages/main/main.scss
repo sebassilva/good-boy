@@ -6,4 +6,17 @@ page-main {
         border-radius:100%;
         margin: auto;
     }
+    #addBtn{
+        font-size:10pc;
+        color:rgba(0, 0, 0, 0.5) !important;
+        position: absolute;
+        margin: auto;
+        bottom: 0px;
+        top: 0px;
+        left: 0px;
+        right: 0px;
+        width: fit-content;
+        height: fit-content;
+        top: 25px;
+    }
 }

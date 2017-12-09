@@ -1,3 +1,30 @@
 page-select-service {
+    .button-round{
+        height: 200px;
+        width: 200px;
+        border:1px solid rgba(0, 0, 0, 0.3);
+        border-radius:100%;
+        margin: auto;
+        margin-bottom: 25px !important;
+        
+    }
+    ion-scroll[scrollX] {
+        white-space: nowrap;
+        .scroll-item {
+          display: inline-block;
+          padding-left: 40px;
+          padding-right: 40px;
+            
+            .title{
 
+            }
+            .description{
+                color: rgba(0, 0, 0, 0.5);
+                font-weight:200;
+            }
+            .cost{
+
+            }
+        }
+      }
 }

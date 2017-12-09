@@ -3,6 +3,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Http } from '@angular/http'
 import { Storage } from '@ionic/storage';
+import { SelectServicePage } from '../select-service/select-service'
+import { ApiProvider } from '../../providers/api/api';
 
 
 @IonicPage()
@@ -18,7 +20,8 @@ export class NewPetPage {
     public navParams: NavParams,    
     public formBuilder: FormBuilder,
     public http: Http,
-    public storage: Storage) {
+    public storage: Storage, 
+    public api: ApiProvider) {
 
       this.formComplete = false
       this.userForm = this.formBuilder.group({
@@ -44,9 +47,8 @@ export class NewPetPage {
         newUser.profile = newUser.profile.join('**')
         console.log(newUser)
 
-        var link = 'http://localhost/api/pet/new';
         newUser["user_id"] = user_id
-        this.http.post(link, newUser)
+        this.api.post('pet/new', newUser)
         .subscribe(data => {
           data = JSON.parse(data["_body"])
           console.log(data.status)
@@ -73,7 +75,7 @@ export class NewPetPage {
   }
 
   continue(){
-
+    this.navCtrl.setRoot(SelectServicePage)
   }
 
   addMore(){

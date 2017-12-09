@@ -16,9 +16,12 @@ import { RegisterPage } from '../pages/register/register';
 import { MainPage } from '../pages/main/main';
 import { NewPage } from '../pages/new/new';
 import { NewPetPage } from '../pages/new-pet/new-pet';
+import { SelectServicePage } from '../pages/select-service/select-service';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { OrderProvider } from '../providers/order/order';
+import { ApiProvider } from '../providers/api/api';
 
 @NgModule({
   declarations: [
@@ -29,7 +32,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     RegisterPage, 
     MainPage, 
     NewPage, 
-    NewPetPage
+    NewPetPage, 
+    SelectServicePage
   ],
   imports: [
     BrowserModule,
@@ -46,12 +50,15 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     RegisterPage, 
     MainPage, 
     NewPage, 
-    NewPetPage
+    NewPetPage, 
+    SelectServicePage
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    OrderProvider,
+    ApiProvider
   ]
 })
 export class AppModule {}

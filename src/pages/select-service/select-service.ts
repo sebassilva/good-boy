@@ -1,12 +1,10 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Storage } from '@ionic/storage';
 
-/**
- * Generated class for the SelectServicePage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { CurrencyPipe } from '@angular/common';
+import { ApiProvider } from '../../providers/api/api';
+
 
 @IonicPage()
 @Component({
@@ -15,7 +13,18 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class SelectServicePage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  services: any
+  constructor(public navCtrl: NavController, 
+    public navParams: NavParams, 
+    public storage: Storage, 
+    public api: ApiProvider) {
+    this.api.get('service').subscribe(data => {
+      this.services = data.data
+    });
+    //   this.api.get('http://localhost/api/service').map(res => res.json()).subscribe(data => {
+    //     this.services = data.data;
+    //     console.log(this.services)
+    // });
   }
 
   ionViewDidLoad() {

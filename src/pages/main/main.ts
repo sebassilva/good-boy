@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { NewPetPage } from '../new-pet/new-pet';
+import { OrderProvider } from '../../providers/order/order';
 
 /**
  * Generated class for the MainPage page.
@@ -16,7 +17,11 @@ import { NewPetPage } from '../new-pet/new-pet';
 })
 export class MainPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, 
+    public navParams: NavParams, 
+    public order: OrderProvider) {
+
+      console.log(this.order.getTest())
   }
 
   ionViewDidLoad() {
