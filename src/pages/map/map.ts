@@ -1,12 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { ChooseDogPage } from '../choose-dog/choose-dog';
 
-/**
- * Generated class for the MapPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -22,4 +17,12 @@ export class MapPage {
     console.log('ionViewDidLoad MapPage');
   }
 
+
+  next(){
+    //TODO: Validate a location has been selected, 
+    //TODO: put marker on map
+    //TODO: lookf for address
+    this.navCtrl.push(ChooseDogPage)
+    
+  }
 }

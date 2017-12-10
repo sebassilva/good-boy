@@ -1,12 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { ApiProvider } from '../../providers/api/api';
+import { OrderProvider } from '../../providers/order/order';
+import { ResumePage } from '../resume/resume';
 
-/**
- * Generated class for the ChooseDogPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -14,12 +11,27 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'choose-dog.html',
 })
 export class ChooseDogPage {
+  dogs: any
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, 
+    public navParams: NavParams, 
+    public api: ApiProvider, 
+    public order: OrderProvider) {
+
+      this.api.get('user/pets/' + this.order.getUserId()).subscribe(data =>{
+        this.dogs = data
+        console.log(this.dogs)
+      })
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ChooseDogPage');
+  }
+
+  dogSelected(id){
+    console.log('dog selected: ' + id)
+    this.order.setPets(id)
+    this.navCtrl.push(ResumePage)
   }
 
 }

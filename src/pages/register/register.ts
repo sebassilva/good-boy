@@ -5,6 +5,8 @@ import { Http } from '@angular/http'
 import { Storage } from '@ionic/storage';
 import { NewPage } from '../new/new';
 
+import { OrderProvider } from '../../providers/order/order';
+
 @IonicPage()
 @Component({
   selector: 'page-register',
@@ -17,7 +19,8 @@ export class RegisterPage {
     public navParams: NavParams, 
     public formBuilder: FormBuilder,
     public http: Http,
-    public storage: Storage) {
+    public storage: Storage, 
+    public order: OrderProvider) {
 
       this.userForm = this.formBuilder.group({
         name: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('[a-zA-Z ]*'), Validators.required])],
@@ -50,6 +53,7 @@ export class RegisterPage {
           console.log(data['api_token'])
           this.storage.set('api_token', data['api_token'])
           this.storage.set('user_id', data['user']['id'])
+          this.order.setUserId(data['user']['id'])
           this.navCtrl.setRoot( NewPage )
   
         }else{

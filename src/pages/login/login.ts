@@ -4,12 +4,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Http } from '@angular/http'
 import { Storage } from '@ionic/storage';
 import { MainPage } from '../main/main';
-/**
- * Generated class for the LoginPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+
+
+import { OrderProvider } from '../../providers/order/order';
+
 
 @IonicPage()
 @Component({
@@ -22,7 +20,8 @@ export class LoginPage {
     public navParams: NavParams, 
     public formBuilder: FormBuilder,
     public http: Http,
-    public storage: Storage) {
+    public storage: Storage, 
+    public order: OrderProvider) {
 
 
       this.userForm = formBuilder.group({
@@ -49,7 +48,8 @@ export class LoginPage {
           this.storage.set('api_token', data['api_token'])
           this.storage.set('user_id', data['user']['id'])
           this.navCtrl.setRoot( MainPage )
-  
+          this.order.setUserId(data['user']['id'])
+          
         }else{
           console.log("no se ha podido crear el usuario")
         }

@@ -26,6 +26,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { OrderProvider } from '../providers/order/order';
 import { ApiProvider } from '../providers/api/api';
+import { ResumePage } from '../pages/resume/resume';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { ApiProvider } from '../providers/api/api';
     SelectServicePage, 
     MapPage, 
     ChooseDogPage, 
-    OrdersPage
+    OrdersPage, 
+    ResumePage
   ],
   imports: [
     BrowserModule,
@@ -61,7 +63,8 @@ import { ApiProvider } from '../providers/api/api';
     SelectServicePage, 
     MapPage, 
     ChooseDogPage, 
-    OrdersPage
+    OrdersPage, 
+    ResumePage
   ],
   providers: [
     StatusBar,

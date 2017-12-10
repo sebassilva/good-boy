@@ -1,12 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { ApiProvider } from '../../providers/api/api';
+import { OrderProvider } from '../../providers/order/order';
 
-/**
- * Generated class for the ResumePage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+
 
 @IonicPage()
 @Component({
@@ -15,7 +12,13 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class ResumePage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  newOrder: object
+  constructor(public navCtrl: NavController, 
+    public navParams: NavParams, 
+    public order: OrderProvider, 
+    public api: ApiProvider) {
+
+      this.newOrder = this.order.getOrder()
   }
 
   ionViewDidLoad() {

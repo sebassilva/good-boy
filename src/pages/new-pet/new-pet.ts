@@ -43,9 +43,7 @@ export class NewPetPage {
       newUser['docVaccine'] = "default"
       newUser["rate"] = 5
       this.storage.get('user_id').then(user_id =>{
-        console.log(newUser)
         newUser.profile = newUser.profile.join('**')
-        console.log(newUser)
 
         newUser["user_id"] = user_id
         this.api.post('pet/new', newUser)

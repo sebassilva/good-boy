@@ -1,11 +1,5 @@
 import { Injectable } from '@angular/core';
 
-/*
-  Generated class for the OrderProvider provider.
-
-  See https://angular.io/guide/dependency-injection for more info on providers
-  and Angular DI.
-*/
 @Injectable()
 export class OrderProvider {
 
@@ -58,5 +52,20 @@ export class OrderProvider {
 
   getAddress(){
     return this.address
+  }
+
+  getUserId(){
+    return this.userId
+  }
+
+  getOrder(){
+    return {
+       user_id: this.userId, 
+       pets: this.pets, 
+       service_id: this.serviceId, 
+       payment: 'default', 
+       location: this.location, 
+       addres: this.address
+    }
   }
 }

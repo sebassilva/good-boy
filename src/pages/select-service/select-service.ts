@@ -5,6 +5,7 @@ import { Storage } from '@ionic/storage';
 import { CurrencyPipe } from '@angular/common';
 import { ApiProvider } from '../../providers/api/api';
 import { OrderProvider } from '../../providers/order/order';
+import { MapPage } from '../map/map';
 
 
 @IonicPage()
@@ -23,10 +24,6 @@ export class SelectServicePage {
     this.api.get('service').subscribe(data => {
       this.services = data.data
     });
-    //   this.api.get('http://localhost/api/service').map(res => res.json()).subscribe(data => {
-    //     this.services = data.data;
-    //     console.log(this.services)
-    // });
   }
 
   ionViewDidLoad() {
@@ -35,6 +32,7 @@ export class SelectServicePage {
 
   serviceSelected(id){
     this.order.setServiceId(id)
+    this.navCtrl.push(MapPage)
     console.log("Service selected: " + this.order.getServiceId())
   }
 
