@@ -4,6 +4,7 @@ import { Storage } from '@ionic/storage';
 
 import { CurrencyPipe } from '@angular/common';
 import { ApiProvider } from '../../providers/api/api';
+import { OrderProvider } from '../../providers/order/order';
 
 
 @IonicPage()
@@ -17,7 +18,8 @@ export class SelectServicePage {
   constructor(public navCtrl: NavController, 
     public navParams: NavParams, 
     public storage: Storage, 
-    public api: ApiProvider) {
+    public api: ApiProvider, 
+    public order: OrderProvider) {
     this.api.get('service').subscribe(data => {
       this.services = data.data
     });
@@ -29,6 +31,11 @@ export class SelectServicePage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad SelectServicePage');
+  }
+
+  serviceSelected(id){
+    this.order.setServiceId(id)
+    console.log("Service selected: " + this.order.getServiceId())
   }
 
 }

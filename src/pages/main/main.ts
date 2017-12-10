@@ -21,7 +21,7 @@ export class MainPage {
     public navParams: NavParams, 
     public order: OrderProvider) {
 
-      console.log(this.order.getTest())
+      console.log()
   }
 
   ionViewDidLoad() {

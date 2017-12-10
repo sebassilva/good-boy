@@ -11,7 +11,7 @@
 <ion-content padding>
     <ion-scroll scrollX style="height:500px;">
         <div class="scroll-item" *ngFor="let service of services">
-            <div class="button-round" (click)="newPet(service.id)">
+            <div class="button-round" (click)="serviceSelected(service.id)">
               </div>
               <div class="title" text-center><h4>{{service.name}}</h4></div>
               <div class="description" text-center><h5>{{service.description}}</h5></div>

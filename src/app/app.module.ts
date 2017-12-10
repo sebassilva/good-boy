@@ -15,8 +15,12 @@ import { LoginPage } from '../pages/login/login';
 import { RegisterPage } from '../pages/register/register';
 import { MainPage } from '../pages/main/main';
 import { NewPage } from '../pages/new/new';
-import { NewPetPage } from '../pages/new-pet/new-pet';
 import { SelectServicePage } from '../pages/select-service/select-service';
+import { NewPetPage } from '../pages/new-pet/new-pet';
+import { MapPage } from '../pages/map/map';
+import { ChooseDogPage } from '../pages/choose-dog/choose-dog';
+import { OrdersPage } from '../pages/orders/orders';
+
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -33,7 +37,10 @@ import { ApiProvider } from '../providers/api/api';
     MainPage, 
     NewPage, 
     NewPetPage, 
-    SelectServicePage
+    SelectServicePage, 
+    MapPage, 
+    ChooseDogPage, 
+    OrdersPage
   ],
   imports: [
     BrowserModule,
@@ -51,7 +58,10 @@ import { ApiProvider } from '../providers/api/api';
     MainPage, 
     NewPage, 
     NewPetPage, 
-    SelectServicePage
+    SelectServicePage, 
+    MapPage, 
+    ChooseDogPage, 
+    OrdersPage
   ],
   providers: [
     StatusBar,
