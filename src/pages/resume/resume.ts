@@ -25,4 +25,9 @@ export class ResumePage {
     console.log('ionViewDidLoad ResumePage');
   }
 
+  placeOrder(){
+    console.log('Order is being placed')
+    this.api.post('order/new', this.newOrder)
+  }
+
 }

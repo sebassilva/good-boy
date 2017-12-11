@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Http } from '@angular/http'
 import { Storage } from '@ionic/storage';
-import { NewPage } from '../new/new';
+import { NewPetPage } from '../new-pet/new-pet';
 
 import { OrderProvider } from '../../providers/order/order';
 
@@ -54,7 +54,7 @@ export class RegisterPage {
           this.storage.set('api_token', data['api_token'])
           this.storage.set('user_id', data['user']['id'])
           this.order.setUserId(data['user']['id'])
-          this.navCtrl.setRoot( NewPage )
+          this.navCtrl.setRoot( NewPetPage )
   
         }else{
           console.log("no se ha podido crear el usuario")

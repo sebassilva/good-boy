@@ -28,6 +28,7 @@ export class NewPetPage {
         name: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('[a-zA-Z ]*'), Validators.required])],
         breed: ['', Validators.compose([Validators.maxLength(20),  Validators.required])],
         profile: ['', Validators.compose([Validators.maxLength(20),  Validators.required])],
+        food_id: ['', Validators.compose([Validators.maxLength(20),  Validators.required])],
     });
 
   }
@@ -39,6 +40,7 @@ export class NewPetPage {
   register(){
     if(this.userForm.valid){
       let newUser = this.userForm.value
+      console.log(newUser)
       newUser['img'] = "default"
       newUser['docVaccine'] = "default"
       newUser["rate"] = 5

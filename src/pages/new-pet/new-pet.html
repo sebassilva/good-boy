@@ -23,7 +23,7 @@
                </ion-item>
  
               <ion-item>
-                  <ion-label>Perfil</ion-label>
+                  <ion-label>Temperamento</ion-label>
                   <ion-select 
                   [(ngModel)]="profile" 
                   multiple="true"
@@ -33,6 +33,19 @@
                     <ion-option>Agresivo con otros perros</ion-option>
                     <ion-option>Se deja acariciar</ion-option>
                   </ion-select>
+                </ion-item>
+
+                <ion-item>
+                    <ion-label>Comida Preferida</ion-label>
+                    <ion-select 
+                    [(ngModel)]="food_id" 
+                    multiple="false"
+                    formControlName="food_id">
+                        <ion-option>Eukanuba</ion-option>
+                        <ion-option>Dog Chow</ion-option>
+                        <ion-option>Pedigree</ion-option>
+                        <ion-option>Otra</ion-option>
+                    </ion-select>
                 </ion-item>
         
            </form>

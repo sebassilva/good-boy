@@ -3,6 +3,7 @@ import { NavController } from 'ionic-angular';
 import { LoginPage } from '../login/login'
 import { RegisterPage } from '../register/register'
 import { MainPage } from '../main/main'
+import { SelectServicePage } from '../select-service/select-service'
 import { Storage } from '@ionic/storage';
 
 import { OrderProvider } from '../../providers/order/order';
@@ -26,7 +27,7 @@ export class HomePage {
         this.storage.get('user_id').then(val =>{
           this.order.setUserId(val)
           console.log("Se ha seteado el user_id" + this.order.getUserId())          
-          this.navCtrl.setRoot( MainPage )                  
+          this.navCtrl.setRoot( SelectServicePage )                  
         })
       }
     })

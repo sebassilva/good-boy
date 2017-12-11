@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Http } from '@angular/http'
 import { Storage } from '@ionic/storage';
 import { MainPage } from '../main/main';
+import { SelectServicePage } from '../select-service/select-service';
 
 
 import { OrderProvider } from '../../providers/order/order';
@@ -47,11 +48,11 @@ export class LoginPage {
           console.log(data['api_token'])
           this.storage.set('api_token', data['api_token'])
           this.storage.set('user_id', data['user']['id'])
-          this.navCtrl.setRoot( MainPage )
+          this.navCtrl.setRoot( SelectServicePage )
           this.order.setUserId(data['user']['id'])
           
         }else{
-          console.log("no se ha podido crear el usuario")
+          console.log("No se ha pododp iniciar sesión")
         }
   
   

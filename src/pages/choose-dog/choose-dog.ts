@@ -19,7 +19,7 @@ export class ChooseDogPage {
     public order: OrderProvider) {
 
       this.api.get('user/pets/' + this.order.getUserId()).subscribe(data =>{
-        this.dogs = data
+        this.dogs = data  
         console.log(this.dogs)
       })
   }

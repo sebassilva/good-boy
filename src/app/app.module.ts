@@ -20,6 +20,7 @@ import { NewPetPage } from '../pages/new-pet/new-pet';
 import { MapPage } from '../pages/map/map';
 import { ChooseDogPage } from '../pages/choose-dog/choose-dog';
 import { OrdersPage } from '../pages/orders/orders';
+import { ProfilePage } from '../pages/profile/profile';
 
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -42,7 +43,8 @@ import { ResumePage } from '../pages/resume/resume';
     MapPage, 
     ChooseDogPage, 
     OrdersPage, 
-    ResumePage
+    ResumePage, 
+    ProfilePage
   ],
   imports: [
     BrowserModule,
@@ -64,7 +66,8 @@ import { ResumePage } from '../pages/resume/resume';
     MapPage, 
     ChooseDogPage, 
     OrdersPage, 
-    ResumePage
+    ResumePage, 
+    ProfilePage
   ],
   providers: [
     StatusBar,
