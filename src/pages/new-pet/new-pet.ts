@@ -79,6 +79,7 @@ export class NewPetPage {
   }
 
   addMore(){
+    this.userForm.reset()
     this.formComplete = false
   }
 }
