@@ -4,6 +4,7 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { Http, HttpModule } from '@angular/http'
 import { IonicStorageModule } from '@ionic/storage';
 import { Storage } from '@ionic/storage';
+import { Geolocation } from '@ionic-native/geolocation';
 
 import { MyApp } from './app.component';
 
@@ -72,9 +73,10 @@ import { ResumePage } from '../pages/resume/resume';
   providers: [
     StatusBar,
     SplashScreen,
+    Geolocation,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     OrderProvider,
-    ApiProvider
+    ApiProvider, 
   ]
 })
 export class AppModule {}
