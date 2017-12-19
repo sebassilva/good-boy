@@ -24,7 +24,7 @@ export class RegisterPage {
 
       this.userForm = this.formBuilder.group({
         name: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('[a-zA-Z ]*'), Validators.required])],
-        lastName: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('[a-zA-Z ]*'), Validators.required])],
+        lastname: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('[a-zA-Z ]*'), Validators.required])],
         email: ['', Validators.compose([Validators.maxLength(30), Validators.required])],
         password: ['', Validators.compose([Validators.maxLength(30), Validators.required])],
         telephone: ['', Validators.compose([Validators.maxLength(12),  Validators.required])],
