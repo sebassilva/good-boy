@@ -30,10 +30,11 @@ export class SelectServicePage {
     console.log('ionViewDidLoad SelectServicePage');
   }
 
-  serviceSelected(id){
-    this.order.setServiceId(id)
+  serviceSelected(service){
+    this.order.setService(service)
     this.navCtrl.push(MapPage)
-    console.log("Service selected: " + this.order.getServiceId())
+    console.log("Service selected: ")
+    console.log(this.order.getService())
   }
 
 }

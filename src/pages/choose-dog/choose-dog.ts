@@ -28,9 +28,10 @@ export class ChooseDogPage {
     console.log('ionViewDidLoad ChooseDogPage');
   }
 
-  dogSelected(id){
-    console.log('dog selected: ' + id)
-    this.order.setPets(id)
+  dogSelected(dog){
+    console.log('dog selected: ')
+    console.log(dog)
+    this.order.setPets(dog)
     this.navCtrl.push(ResumePage)
   }
 

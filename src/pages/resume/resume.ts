@@ -19,6 +19,7 @@ export class ResumePage {
     public api: ApiProvider) {
 
       this.newOrder = this.order.getOrder()
+      console.log(this.newOrder)
   }
 
   ionViewDidLoad() {

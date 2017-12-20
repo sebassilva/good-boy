@@ -4,11 +4,12 @@ import { Injectable } from '@angular/core';
 export class OrderProvider {
 
  userId: string
- pets: string
+ pets: any
  serviceId: string
  payment: string
- location: string
+ location: any
  address: string
+ service: any
 
 
   constructor() {
@@ -18,6 +19,10 @@ export class OrderProvider {
 
   setUserId(userId){
     this.userId = userId
+  }
+
+  setService(service){
+    this.service = service
   }
 
   setPets(pets){
@@ -42,6 +47,9 @@ export class OrderProvider {
     return this.pets
   }
 
+  getService(){
+    return this.service
+  }
   getServiceId(){
     return this.serviceId
   }
@@ -62,10 +70,10 @@ export class OrderProvider {
     return {
        user_id: this.userId, 
        pets: this.pets, 
-       service_id: this.serviceId, 
+       service: this.service, 
        payment: 'default', 
        location: this.location, 
-       addres: this.address
+       address: this.address
     }
   }
 }

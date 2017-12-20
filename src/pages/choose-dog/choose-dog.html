@@ -12,7 +12,7 @@
 
     <ion-scroll scrollX style="height:500px;">
         <div class="scroll-item" *ngFor="let dog of dogs">
-            <div class="button-round" (click)="dogSelected(dog.id)">
+            <div class="button-round" (click)="dogSelected(dog)">
               </div>
               <div class="title" text-center><h4>{{dog.name}}</h4></div>
         </div>   
