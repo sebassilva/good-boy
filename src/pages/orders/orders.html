@@ -9,6 +9,12 @@
 
 
 <ion-content padding>
+  <h4>Resúmen de tus órdenes</h4>
+  <ion-card *ngFor="let order of orders">
+    <img src="img/card-saopaolo.png"/>
+    <div class="card-title">{{order.service_id}}</div>
+    <div class="card-subtitle">{{order.created_at}}</div>
+  </ion-card>
 
 
 </ion-content>

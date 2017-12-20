@@ -49,13 +49,18 @@ export class MapPage {
         rotateControl: false,
         fullscreenControl: false
       }
+
       
       //Init map and listeners
-      this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
+      this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions)
+      this.location = {lat: this.map.getCenter().lat(), lng: this.map.getCenter().lng()}
       this.getReverseGeocodingData(position.coords.latitude, position.coords.longitude)
+
       this.map.addListener('center_changed', _ =>{
-        this.location =  this.map.getCenter()
-        this.getReverseGeocodingData(this.location.lat(), this.location.lng())
+        this.location =  {lat: this.map.getCenter().lat(), lng: this.map.getCenter().lng()}
+        this.getReverseGeocodingData(this.location.lat, this.location.lng)
+
+
       })
  
     }, (err) => {

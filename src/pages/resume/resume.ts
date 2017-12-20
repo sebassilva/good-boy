@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ApiProvider } from '../../providers/api/api';
 import { OrderProvider } from '../../providers/order/order';
-
+import { OrdersPage } from '../orders/orders'
 
 
 @IonicPage()
@@ -29,6 +29,13 @@ export class ResumePage {
   placeOrder(){
     console.log('Order is being placed')
     this.api.post('order/new', this.newOrder)
+    .subscribe(data => {
+      data = JSON.parse(data['_body'])
+      
+     if(data.status == 0){
+        this.navCtrl.setRoot(OrdersPage)
+     }
+    })
   }
 
 }

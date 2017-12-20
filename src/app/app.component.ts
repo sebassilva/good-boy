@@ -8,6 +8,7 @@ import { ProfilePage } from '../pages/profile/profile';
 import { SelectServicePage } from '../pages/select-service/select-service';
 
 import { Storage } from '@ionic/storage';
+import { OrdersPage } from '../pages/orders/orders';
 
 @Component({
   templateUrl: 'app.html'
@@ -29,7 +30,7 @@ export class MyApp {
     this.pages = [
       { title: 'Inicio', component: HomePage },
       { title: 'Mi Perfil', component: ProfilePage },
-      { title: 'Mis Órdenes', component: HomePage },
+      { title: 'Mis Órdenes', component: OrdersPage },
       { title: 'Salir' }
     ];
 

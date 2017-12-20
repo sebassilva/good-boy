@@ -44,7 +44,7 @@ export class RegisterPage {
       newUser['docAddress'] = ""
       newUser["freeServices"] = 0
       var link = 'http://localhost/api/user/new';
-      
+      console.log('Se está registrando el usuario')
       this.http.post(link, newUser)
       .subscribe(data => {
         data = JSON.parse(data["_body"])

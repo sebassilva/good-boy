@@ -10,14 +10,17 @@ import { OrderProvider } from '../../providers/order/order';
 })
 export class OrdersPage {
 
-  newOrder: object
+    orders: any  
   constructor(public navCtrl: NavController, 
     public navParams: NavParams, 
     public order: OrderProvider, 
     public api: ApiProvider) {
 
-      this.newOrder = this.order.getOrder()
-  }
+      this.api.get('order/all/' + this.order.getUserId()).subscribe(data =>{
+        console.log(data)
+        this.orders = data.data
+      })
+    }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad OrdersPage');
