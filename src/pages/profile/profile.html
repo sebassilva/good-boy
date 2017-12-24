@@ -8,23 +8,38 @@
 
 
 <ion-content padding>
+
+    <h2 padding>Mi información</h2> 
     <ion-list>
-        
-           <form [formGroup]="userForm">
-        
-               <ion-item>
-                   <ion-label floating>Nombre</ion-label>
-                   <ion-input formControlName="name" type="text"></ion-input>
-               </ion-item>
-        
+
+        <form [formGroup]="userForm">
+
+            <ion-item>
+                <ion-label floating>Nombre</ion-label>
+                <ion-input formControlName="name" type="text"></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label floating>Teléfono</ion-label>
+                <ion-input formControlName="telephone" type="number"></ion-input>
+            </ion-item>
+
+        </form>
+        <button ion-button full color="secondary" (click)="register()">Registrarse</button>             
+    </ion-list>
 
 
-              <ion-item>
-                  <ion-label floating>Teléfono</ion-label>
-                  <ion-input formControlName="telephone" type="number"></ion-input>
-              </ion-item>
-        
-           </form>
-           <button ion-button full color="secondary" (click)="register()">Registrarse</button>             
-       </ion-list>
+    <h2 padding>Mis mascotas</h2>
+
+
+    <ion-list>
+        <ion-item *ngFor="let dog of dogs">
+            <ion-avatar item-start>
+                <img src="assets/imgs/default-dog.png">
+            </ion-avatar>
+            <h2>{{dog.name}}</h2>
+            <h3>{{dog.breed}}</h3>
+            <p>I've had a pretty messed up day. If we just...</p>
+        </ion-item>
+      </ion-list>
 </ion-content>

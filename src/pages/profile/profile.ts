@@ -12,7 +12,7 @@ import { ApiProvider } from '../../providers/api/api';
 })
 export class ProfilePage {
   userForm: FormGroup
-
+  dogs: any
   constructor(public navCtrl: NavController, 
     public navParams: NavParams, 
     public api: ApiProvider, 
@@ -32,6 +32,12 @@ export class ProfilePage {
           telephone: user.telephone, 
 
         })
+      })
+
+      //Get all the doggos
+      this.api.get('user/pets/' + user_id).subscribe(dogs =>{
+        console.log(dogs)
+        this.dogs = dogs
       })
       
     })
