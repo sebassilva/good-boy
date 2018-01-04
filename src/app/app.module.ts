@@ -22,6 +22,9 @@ import { MapPage } from '../pages/map/map';
 import { ChooseDogPage } from '../pages/choose-dog/choose-dog';
 import { OrdersPage } from '../pages/orders/orders';
 import { ProfilePage } from '../pages/profile/profile';
+import { HomeProviderPage } from '../pages/home-provider/home-provider';
+import { LoginProviderPage } from '../pages/login-provider/login-provider';
+import { RegisterProviderPage } from '../pages/register-provider/register-provider';
 
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -45,7 +48,10 @@ import { ResumePage } from '../pages/resume/resume';
     ChooseDogPage, 
     OrdersPage, 
     ResumePage, 
-    ProfilePage
+    ProfilePage, 
+    HomeProviderPage, 
+    LoginProviderPage, 
+    RegisterProviderPage
   ],
   imports: [
     BrowserModule,
@@ -68,7 +74,10 @@ import { ResumePage } from '../pages/resume/resume';
     ChooseDogPage, 
     OrdersPage, 
     ResumePage, 
-    ProfilePage
+    ProfilePage, 
+    HomeProviderPage, 
+    LoginProviderPage, 
+    RegisterProviderPage
   ],
   providers: [
     StatusBar,

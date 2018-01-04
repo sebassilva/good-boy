@@ -1,0 +1,31 @@
+
+<ion-header>
+  
+  <ion-navbar>
+    <ion-title>Login Provider</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+    <ion-list>
+        
+           <form [formGroup]="userForm">
+
+               <ion-item>
+                  <ion-label floating>Correo</ion-label>
+                  <ion-input formControlName="email" type="email"></ion-input>
+              </ion-item>    
+
+              <ion-item>
+                  <ion-label floating>Contraseña</ion-label>
+                  <ion-input formControlName="password" type="password"></ion-input>
+              </ion-item> 
+
+           </form>
+           <button ion-button full color="secondary" (click)="login()">Iniciar Sesión</button>             
+       </ion-list>
+
+</ion-content>
