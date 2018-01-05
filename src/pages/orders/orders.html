@@ -9,11 +9,18 @@
 
 
 <ion-content padding>
-  <h4>Resúmen de tus órdenes</h4>
+  <h4 text-center>Resúmen de tus órdenes</h4>
   <ion-card *ngFor="let order of orders">
-    <img src="img/card-saopaolo.png"/>
-    <div class="card-title">{{order.service_id}}</div>
-    <div class="card-subtitle">{{order.created_at}}</div>
+    <img src="assets/imgs/shower-dog.png"/>
+    <ion-card-content>
+      <ion-card-title>
+        {{order.service}}
+      </ion-card-title>
+      <p>Para: {{order.pet.name}}</p>
+      <p>Ordenado:   {{order.created_at | date:"medium"}}</p>
+      <p>Estado actual:   {{order.status_id}}</p>
+      <p><b>Total: $ {{order.grandTotal | number:"1.2-2"}}</b></p>
+    </ion-card-content>
   </ion-card>
 
 

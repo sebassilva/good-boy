@@ -15,6 +15,7 @@ import { ApiProvider } from '../../providers/api/api';
 export class NewPetPage {
   userForm: FormGroup
   formComplete: boolean
+  foods: any
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,    
@@ -23,6 +24,9 @@ export class NewPetPage {
     public storage: Storage, 
     public api: ApiProvider) {
 
+      this.api.get('food').subscribe(foods => {
+        this.foods = foods.data
+      })
       this.formComplete = false
       this.userForm = this.formBuilder.group({
         name: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('[a-zA-Z ]*'), Validators.required])],

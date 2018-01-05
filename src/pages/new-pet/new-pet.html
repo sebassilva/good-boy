@@ -46,10 +46,7 @@
                     [(ngModel)]="food_id" 
                     multiple="false"
                     formControlName="food_id">
-                        <ion-option>Eukanuba</ion-option>
-                        <ion-option>Dog Chow</ion-option>
-                        <ion-option>Pedigree</ion-option>
-                        <ion-option>Otra</ion-option>
+                        <ion-option *ngFor="let food of foods">{{food.name}}</ion-option>
                     </ion-select>
                 </ion-item>
         
