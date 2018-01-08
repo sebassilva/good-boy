@@ -45,12 +45,12 @@ export class LoginProviderPage {
         console.log(data)
         data = JSON.parse(data["_body"])
         if(data.status == 0){
-          console.log(data['api_token'])
           this.storage.set('api_token', data['api_token'])
           this.storage.set('user_id', data['user']['id'])
-          this.navCtrl.setRoot( MainProviderPage )
           this.order.setUserId(data['user']['id'])
           this.storage.set('is_provider', true)
+
+          this.navCtrl.setRoot( MainProviderPage )
 
         }else{
           console.log("No se ha pododp iniciar sesión")

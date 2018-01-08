@@ -38,8 +38,9 @@ export class MainProviderPage {
     this.api.post('provider/orders/accept', orderInfo).subscribe(data =>{
       data = data.json()
       console.log(data)
+      console.log(orderAccepted)
       if(data.status == 0){
-        this.navCtrl.setRoot( MapPage, orderInfo )
+        this.navCtrl.setRoot( MapPage, orderAccepted )
       }
 
       this.api.showNotification(data['message'])

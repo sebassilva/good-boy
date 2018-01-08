@@ -1,6 +1,7 @@
 import { Component , ViewChild, ElementRef, NgZone} from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 import { ChooseDogPage } from '../choose-dog/choose-dog';
+import { OrderInfoModalPage } from '../order-info-modal/order-info-modal';
 
 import { Geolocation } from '@ionic-native/geolocation';
 import { OrderProvider } from '../../providers/order/order';
@@ -19,18 +20,61 @@ export class MapPage {
   map: any;
   address: string 
   location: any
+  isProvider: boolean
+
 
   constructor(public navCtrl: NavController, 
     public navParams: NavParams, 
     public geolocation: Geolocation, 
     private ngZone: NgZone, 
-    public order: OrderProvider) {
+    public order: OrderProvider,
+    public modalCtrl: ModalController){
+      this.isProvider = this.navParams.get('isProvider')
   }
+
+  viewOrder(){
+    let order = {
+      isProvider: this.isProvider,
+      id: this.navParams.get('id'),
+      address: this.navParams.get('address'), 
+      lat: this.navParams.get('lat'), 
+      lng: this.navParams.get('lng'), 
+      pet: this.navParams.get('pet'), 
+      service: this.navParams.get('service'), 
+    }
+
+    this.presentOrderModal(order)
+  }
+
+
 
   ionViewDidLoad() {
     this.loadMap();
-    console.log('ionViewDidLoad MapPage');
+    if(this.navParams.get('id')){
+
+      this.isProvider = true
+    }
+    console.log(this.navParams.get(''))
   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /*aux functions for map */
 
   loadMap(){
 
@@ -67,7 +111,6 @@ export class MapPage {
       console.log(err);
     });
   }
-
 
 
   addMarker(){
@@ -127,5 +170,11 @@ export class MapPage {
       console.log("No se ha seleccionado ninguna dirección")
     }
     
+  }
+
+
+  presentOrderModal(order) {
+    let orderModal = this.modalCtrl.create(OrderInfoModalPage, order);
+    orderModal.present();
   }
 }

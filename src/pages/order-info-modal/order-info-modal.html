@@ -1,0 +1,30 @@
+
+<ion-header>
+
+  <ion-navbar>
+      <ion-buttons>
+          <button (click)="cancel()">
+            Cerrar
+          </button>
+        </ion-buttons>
+    <ion-title>OrderInfoModal</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <h4 text-center>Resúmen de tus órdenes</h4>
+  <ion-card>
+    <img src="assets/imgs/shower-dog.png"/>
+    <ion-card-content>
+      <ion-card-title>
+        {{order.service}}
+      </ion-card-title>
+      <p>Para: {{order.pet.name}}</p>
+      <p>Dirección: {{order.address}}</p>
+      <!-- Botones para recogido de pedido y cancelación-->
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

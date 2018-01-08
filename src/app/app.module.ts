@@ -26,6 +26,7 @@ import { HomeProviderPage } from '../pages/home-provider/home-provider';
 import { LoginProviderPage } from '../pages/login-provider/login-provider';
 import { RegisterProviderPage } from '../pages/register-provider/register-provider';
 import { MainProviderPage } from '../pages/main-provider/main-provider';
+import { OrderInfoModalPage } from '../pages/order-info-modal/order-info-modal';
 
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -60,7 +61,8 @@ import { Camera } from '@ionic-native/camera';
     HomeProviderPage, 
     LoginProviderPage, 
     RegisterProviderPage, 
-    MainProviderPage
+    MainProviderPage, 
+    OrderInfoModalPage
   ],
   imports: [
     BrowserModule,
@@ -87,7 +89,8 @@ import { Camera } from '@ionic-native/camera';
     HomeProviderPage, 
     LoginProviderPage, 
     RegisterProviderPage, 
-    MainProviderPage
+    MainProviderPage, 
+    OrderInfoModalPage
   ],
   providers: [
     StatusBar,

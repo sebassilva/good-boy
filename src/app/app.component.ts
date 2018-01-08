@@ -57,6 +57,8 @@ export class MyApp {
 
   logout(){
     this.storage.clear()
+    this.storage.remove('user_id')
+    this.storage.remove('api_token')
     this.nav.setRoot(HomePage);
 
   }
