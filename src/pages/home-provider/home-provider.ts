@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { LoginProviderPage } from '../login-provider/login-provider'
 import { RegisterProviderPage } from '../register-provider/register-provider'
+import { MainProviderPage } from '../main-provider/main-provider'
 
 import { Storage } from '@ionic/storage';
 import { OrderProvider } from '../../providers/order/order';
@@ -29,7 +30,7 @@ export class HomeProviderPage {
           this.order.setUserId(val)
           console.log("Se ha seteado el user_id" + this.order.getUserId())          
           console.log("Se ha iniciado sesión como provider omg")          
-          //this.navCtrl.setRoot( SelectServicePage )                  
+          this.navCtrl.setRoot( MainProviderPage )                  
         })
       }
     })

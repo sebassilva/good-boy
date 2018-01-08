@@ -3,16 +3,10 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Http } from '@angular/http'
 import { Storage } from '@ionic/storage';
-import { NewPetPage } from '../new-pet/new-pet';
+import { MainProviderPage } from '../main-provider/main-provider';
 
 import { OrderProvider } from '../../providers/order/order';
 
-/**
- * Generated class for the RegisterProviderPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -63,8 +57,9 @@ export class RegisterProviderPage {
           console.log(data['api_token'])
           this.storage.set('api_token', data['api_token'])
           this.storage.set('user_id', data['user']['id'])
+          this.storage.set('is_provider', true)
           this.order.setUserId(data['user']['id'])
-          this.navCtrl.setRoot( NewPetPage )
+          this.navCtrl.setRoot( MainProviderPage )
   
         }else{
           console.log("no se ha podido crear el usuario")

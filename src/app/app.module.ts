@@ -25,6 +25,7 @@ import { ProfilePage } from '../pages/profile/profile';
 import { HomeProviderPage } from '../pages/home-provider/home-provider';
 import { LoginProviderPage } from '../pages/login-provider/login-provider';
 import { RegisterProviderPage } from '../pages/register-provider/register-provider';
+import { MainProviderPage } from '../pages/main-provider/main-provider';
 
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -58,7 +59,8 @@ import { Camera } from '@ionic-native/camera';
     ProfilePage, 
     HomeProviderPage, 
     LoginProviderPage, 
-    RegisterProviderPage
+    RegisterProviderPage, 
+    MainProviderPage
   ],
   imports: [
     BrowserModule,
@@ -84,7 +86,8 @@ import { Camera } from '@ionic-native/camera';
     ProfilePage, 
     HomeProviderPage, 
     LoginProviderPage, 
-    RegisterProviderPage
+    RegisterProviderPage, 
+    MainProviderPage
   ],
   providers: [
     StatusBar,

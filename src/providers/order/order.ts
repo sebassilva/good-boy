@@ -10,11 +10,13 @@ export class OrderProvider {
  location: any
  address: string
  service: any
+ isProvider: boolean
 
 
   constructor() {
     console.log('Hello OrderProvider Provider');
     this.payment = "default"
+    this.isProvider = false;
   }
 
   setUserId(userId){
@@ -39,6 +41,10 @@ export class OrderProvider {
 
   setAddress(address){
     this.address = address
+  }
+
+  setIsProvider(){
+    this.isProvider = true
   }
 
 
@@ -66,6 +72,9 @@ export class OrderProvider {
     return this.userId
   }
 
+  getIsProvider(){
+    return this.isProvider
+  }
   getOrder(){
     return {
        user_id: this.userId, 
