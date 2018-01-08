@@ -63,8 +63,6 @@ export class NewPetPage {
             console.log(data['error'])
           }
     
-    
-          
         }, error => {
             console.log("Ha ocurrido un error con la conexión al servidor");
         });

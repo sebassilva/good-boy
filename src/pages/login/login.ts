@@ -36,7 +36,10 @@ export class LoginPage {
   }
 
   login(){
+    console.log("login started")
     if(this.userForm.valid){
+    console.log("login valid")
+      
       let newUser = this.userForm.value
       var link = 'http://localhost/api/user/login';
       

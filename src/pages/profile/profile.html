@@ -9,14 +9,24 @@
 
 <ion-content padding>
 
-    <h2 padding>Mi información</h2> 
+    <h2 text-center>Mi información</h2> 
     <ion-list>
 
         <form [formGroup]="userForm">
-
+            <img src="{{pathForImage(lastImage)}}" style="width: 100%" [hidden]="lastImage === null">
+            <ion-buttons>
+                <button ion-button icon-left (click)="presentActionSheet()">
+                  <ion-icon name="camera"></ion-icon>Select Image
+                </button>
+              </ion-buttons>
             <ion-item>
                 <ion-label floating>Nombre</ion-label>
                 <ion-input formControlName="name" type="text"></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label floating>Apellido</ion-label>
+                <ion-input formControlName="lastname" type="text"></ion-input>
             </ion-item>
 
             <ion-item>
@@ -24,12 +34,20 @@
                 <ion-input formControlName="telephone" type="number"></ion-input>
             </ion-item>
 
+            <ion-item>
+                <ion-label floating>Tu código promocional</ion-label>
+                <ion-input formControlName="sharingCode" [disabled]="true" type="text"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label floating>Servicios Gratuitos</ion-label>
+                <ion-input formControlName="freeServices" [disabled]="true" type="text"></ion-input>
+            </ion-item>
         </form>
-        <button ion-button full color="secondary" (click)="register()">Registrarse</button>             
+        <button ion-button full color="primary" (click)="register()">Actualizar</button>             
     </ion-list>
 
 
-    <h2 padding>Mis mascotas</h2>
+    <h2 text-center>Mis mascotas</h2>
 
 
     <ion-list>
@@ -41,5 +59,6 @@
             <h3>{{dog.breed}}</h3>
             <p>I've had a pretty messed up day. If we just...</p>
         </ion-item>
+        <button ion-button full color="secondary" [navPush]="newPet">Agregar mascota</button>             
       </ion-list>
 </ion-content>

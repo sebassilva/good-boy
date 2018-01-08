@@ -33,6 +33,13 @@ import { OrderProvider } from '../providers/order/order';
 import { ApiProvider } from '../providers/api/api';
 import { ResumePage } from '../pages/resume/resume';
 
+/*camer plugins*/
+import { File } from '@ionic-native/file';
+import { Transfer } from '@ionic-native/transfer';
+import { FilePath } from '@ionic-native/file-path';
+import { Camera } from '@ionic-native/camera';
+
+
 @NgModule({
   declarations: [
     MyApp,
@@ -86,6 +93,10 @@ import { ResumePage } from '../pages/resume/resume';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     OrderProvider,
     ApiProvider, 
+    File,
+    Transfer,
+    Camera,
+    FilePath,
   ]
 })
 export class AppModule {}

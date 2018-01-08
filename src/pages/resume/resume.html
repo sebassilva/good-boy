@@ -1,4 +1,3 @@
-
 <ion-header>
 
   <ion-navbar>
@@ -9,29 +8,29 @@
 
 
 <ion-content padding>
-    <ion-title>
-        <h2>Resumen de la orden</h2>
-      </ion-title>
-      <ion-list>
-        <ion-item>
-          Usuario: {{newOrder.user_id}}
-        </ion-item>
-    
-        <ion-item>
-          Servicio: {{newOrder.service.name}}
-        </ion-item> 
-          
-        <ion-item>
-          Servicio para: {{newOrder.pets.name}}
-        </ion-item>
-    
-        <ion-item>
-          Forma de pago: {{newOrder.payment}}
-        </ion-item>
-    
-        <ion-item>
-           Diercción: {{newOrder.address}}
-        </ion-item>
-      </ion-list>
-      <button ion-button full color="secondary" (click)="placeOrder()">Confirmar Pedido</button>
+  <ion-title>
+    <h2>Resumen de la orden</h2>
+  </ion-title>
+  <ion-list>
+    <ion-item>
+      Servicio: {{newOrder.service.name}}
+    </ion-item>
+
+    <ion-item>
+      Para: {{newOrder.pets.name}}
+    </ion-item>
+
+    <ion-item>
+      Forma de pago: {{newOrder.payment}}
+    </ion-item>
+
+    <ion-item>
+      Diercción: {{newOrder.address}}
+    </ion-item>
+
+    <ion-item>
+      <b>Total: $ {{newOrder.service.cost | number:"1.2-2"}}</b>
+    </ion-item>
+  </ion-list>
+  <button ion-button full color="secondary" (click)="placeOrder()">Confirmar Pedido</button>
 </ion-content>
