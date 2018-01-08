@@ -9,8 +9,10 @@
 
 
 <ion-content >
+    <h5 text-center padding>¿Dónde la recogemos?</h5> 
+
     <div #map id="map"></div>    
-    <div class="centerMarker"></div>
+    <div class="centerMarker"  *ngIf="!isProvider"></div>
 
 
     <ion-item>

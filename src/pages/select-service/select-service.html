@@ -9,6 +9,7 @@
 
 
 <ion-content padding>
+    <h5 text-center padding>¿Qué servicio necesita tu mascota?</h5> 
     <ion-scroll scrollX style="height:500px;">
         <div class="scroll-item" *ngFor="let service of services">
             <div class="button-round" (click)="serviceSelected(service)">

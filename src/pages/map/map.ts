@@ -21,7 +21,7 @@ export class MapPage {
   address: string 
   location: any
   isProvider: boolean
-
+  currentOrder: any
 
   constructor(public navCtrl: NavController, 
     public navParams: NavParams, 
@@ -29,35 +29,46 @@ export class MapPage {
     private ngZone: NgZone, 
     public order: OrderProvider,
     public modalCtrl: ModalController){
+
+
       this.isProvider = this.navParams.get('isProvider')
+      this.currentOrder = {
+        isProvider: this.isProvider,
+        id: this.navParams.get('id'),
+        address: this.navParams.get('address'), 
+        lat: this.navParams.get('lat'), 
+        lng: this.navParams.get('lng'), 
+        pet: this.navParams.get('pet'), 
+        service: this.navParams.get('service'), 
+      }
+
   }
 
   viewOrder(){
-    let order = {
-      isProvider: this.isProvider,
-      id: this.navParams.get('id'),
-      address: this.navParams.get('address'), 
-      lat: this.navParams.get('lat'), 
-      lng: this.navParams.get('lng'), 
-      pet: this.navParams.get('pet'), 
-      service: this.navParams.get('service'), 
-    }
-
-    this.presentOrderModal(order)
+    this.presentOrderModal(this.currentOrder)
   }
 
 
 
   ionViewDidLoad() {
-    this.loadMap();
     if(this.navParams.get('id')){
-
       this.isProvider = true
     }
-    console.log(this.navParams.get(''))
+    this.loadMap();
   }
 
+  loadProviderConfig(){
+    console.log('provider config', this.isProvider)
+    if(this.isProvider){
+      let latLng = new google.maps.LatLng(parseFloat(this.currentOrder.lat), parseFloat(this.currentOrder.lng))
+      //Add marker for order
+      this.addMarker(latLng)
 
+      //Add marker for current user location
+      console.log('this.autoUpdatePosition')
+      this.autoUpdatePosition()
+    }
+  }
 
 
 
@@ -84,7 +95,7 @@ export class MapPage {
       let latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
       let mapOptions = {
         center: latLng,
-        zoom: 15,
+        zoom: 13,
         mapTypeId: google.maps.MapTypeId.ROADMAP, 
         zoomControl: false,
         mapTypeControl: false,
@@ -106,19 +117,23 @@ export class MapPage {
 
 
       })
+      this.loadProviderConfig()
+
  
     }, (err) => {
       console.log(err);
     });
+
+
   }
 
 
-  addMarker(){
-
+  addMarker(position){
+    console.log('adding marter')
     let marker = new google.maps.Marker({
       map: this.map,
       animation: google.maps.Animation.DROP,
-      position: this.map.getCenter()
+      position: position
     });
     let content = "<h4>Information!</h4>";         
     this.addInfoWindow(marker, content);
@@ -177,4 +192,35 @@ export class MapPage {
     let orderModal = this.modalCtrl.create(OrderInfoModalPage, order);
     orderModal.present();
   }
+
+
+
+  autoUpdatePosition(){
+    console.log('Inside autoupdate')
+    this.geolocation.getCurrentPosition().then((position) => {
+      console.log(position)
+      let marker = null
+      let latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+      if(marker){
+        marker.setPosition(latLng)
+      }else{
+        marker = new google.maps.Marker({
+          position: latLng,
+          map: this.map
+        });
+      }
+      this.map.setCenter(latLng)
+
+ 
+    }, (err) => {
+      console.log(err);
+    });
+    setTimeout(this.autoUpdatePosition, 5000)
+
+
+  }
+
+
+
+
 }
