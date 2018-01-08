@@ -2,14 +2,14 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>map</ion-title>
+    <ion-title></ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content >
-    <h5 text-center padding>¿Dónde la recogemos?</h5> 
+    <h5 text-center padding *ngIf="!isProvider">¿Dónde la recogemos?</h5> 
 
     <div #map id="map"></div>    
     <div class="centerMarker"  *ngIf="!isProvider"></div>
@@ -17,7 +17,7 @@
 
     <ion-item>
         <ion-label>Dirección</ion-label>
-        <ion-input type="text" [(ngModel)]="address"></ion-input>
+        <ion-input type="text" [(ngModel)]="address" *ngIf="!isProvider"></ion-input>
       </ion-item>
 
     <button ion-button full color="secondary" (click)="next()" *ngIf="!isProvider">Siguiente</button>              
