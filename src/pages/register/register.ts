@@ -6,7 +6,9 @@ import { Storage } from '@ionic/storage';
 import { NewPetPage } from '../new-pet/new-pet';
 
 import { OrderProvider } from '../../providers/order/order';
+import { DisableSideMenu } from '../../decorators/disable-side-menu.decorator';
 
+@DisableSideMenu()
 @IonicPage()
 @Component({
   selector: 'page-register',

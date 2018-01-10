@@ -8,7 +8,9 @@ import { SelectServicePage } from '../select-service/select-service';
 
 
 import { OrderProvider } from '../../providers/order/order';
+import { DisableSideMenu } from '../../decorators/disable-side-menu.decorator';
 
+@DisableSideMenu()
 
 @IonicPage()
 @Component({

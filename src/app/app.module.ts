@@ -7,7 +7,7 @@ import { Storage } from '@ionic/storage';
 import { Geolocation } from '@ionic-native/geolocation';
 
 import { MyApp } from './app.component';
-
+import { Injector } from '@angular/core'
 
 /*Pages*/
 import { HomePage } from '../pages/home/home';
@@ -105,4 +105,13 @@ import { Camera } from '@ionic-native/camera';
     FilePath,
   ]
 })
-export class AppModule {}
+
+export class AppModule {
+
+  static injector: Injector;
+
+  constructor(injector: Injector) {    
+      // Make the injector to be available in the entire module
+      AppModule.injector = injector;    
+  }
+}

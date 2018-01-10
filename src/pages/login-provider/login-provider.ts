@@ -8,7 +8,9 @@ import { MainProviderPage } from '../main-provider/main-provider';
 
 
 import { OrderProvider } from '../../providers/order/order';
+import { DisableSideMenu } from '../../decorators/disable-side-menu.decorator';
 
+@DisableSideMenu()
 
 
 @IonicPage()

@@ -7,7 +7,9 @@ import { MainProviderPage } from '../main-provider/main-provider'
 import { Storage } from '@ionic/storage';
 import { OrderProvider } from '../../providers/order/order';
 
+import { DisableSideMenu } from '../../decorators/disable-side-menu.decorator';
 
+@DisableSideMenu()
 @Component({
   selector: 'page-home-provider',
   templateUrl: 'home-provider.html',

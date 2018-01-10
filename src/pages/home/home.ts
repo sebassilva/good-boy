@@ -5,12 +5,14 @@ import { RegisterPage } from '../register/register'
 import { MainPage } from '../main/main'
 import { SelectServicePage } from '../select-service/select-service'
 import { HomeProviderPage } from '../home-provider/home-provider'
-import { MainProviderPAge, MainProviderPage } from '../main-provider/main-provider'
+import { MainProviderPage } from '../main-provider/main-provider'
 
 import { Storage } from '@ionic/storage';
 
 import { OrderProvider } from '../../providers/order/order';
+import { DisableSideMenu } from '../../decorators/disable-side-menu.decorator';
 
+@DisableSideMenu()
 
 @Component({
   selector: 'page-home',

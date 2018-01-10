@@ -7,7 +7,9 @@ import { MainProviderPage } from '../main-provider/main-provider';
 
 import { OrderProvider } from '../../providers/order/order';
 import { ApiProvider } from '../../providers/api/api';
+import { DisableSideMenu } from '../../decorators/disable-side-menu.decorator';
 
+@DisableSideMenu()
 
 @IonicPage()
 @Component({
