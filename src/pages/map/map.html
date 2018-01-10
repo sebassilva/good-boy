@@ -20,6 +20,10 @@
         <ion-input type="text" [(ngModel)]="address" *ngIf="!isProvider"></ion-input>
       </ion-item>
 
+    <h6 *ngIf="isInCourse" text-center>Tiempo restante: {{timeRemaining | date:'mm:ss'}}</h6>      
+    
     <button ion-button full color="secondary" (click)="next()" *ngIf="!isProvider">Siguiente</button>              
-    <button ion-button full color="secondary" (click)="viewOrder()" *ngIf="isProvider">Ver Órden</button>              
+    <button ion-button full color="primary" (click)="viewOrder()" *ngIf="isProvider">Ver Órden</button>              
+    <button ion-button full color="secondary" (click)="orderStart()" *ngIf="isProvider && !isInCourse">Recogí el Pedido</button>        
+    <button ion-button full color="secondary" (click)="orderFinish()" *ngIf="isProvider && isInCourse">Terminé el Pedido</button>        
 </ion-content>

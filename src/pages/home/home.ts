@@ -5,6 +5,7 @@ import { RegisterPage } from '../register/register'
 import { MainPage } from '../main/main'
 import { SelectServicePage } from '../select-service/select-service'
 import { HomeProviderPage } from '../home-provider/home-provider'
+import { MainProviderPAge, MainProviderPage } from '../main-provider/main-provider'
 
 import { Storage } from '@ionic/storage';
 
@@ -27,14 +28,24 @@ export class HomePage {
     this.register = RegisterPage;
     this.homeProvider = HomeProviderPage
     
-    this.storage.get('api_token').then(val =>{
-      if(val){
-        this.storage.get('user_id').then(val =>{
-          this.order.setUserId(val)
-          console.log("Se ha seteado el user_id" + this.order.getUserId())          
-          this.navCtrl.setRoot( SelectServicePage )                  
-        })
-      }
+    this.storage.get('api_token').then(api_token =>{
+      this.storage.get('is_provider').then(is_provider =>{
+
+        if(api_token){
+          this.storage.get('user_id').then(val =>{
+            this.order.setUserId(val)
+            console.log("Se ha seteado el user_id" + this.order.getUserId())   
+            if(is_provider){
+              this.navCtrl.setRoot( MainProviderPage )                  
+
+            }else{
+              this.navCtrl.setRoot( SelectServicePage )                  
+            }       
+          })
+        }
+
+
+      })
     })
   }
 

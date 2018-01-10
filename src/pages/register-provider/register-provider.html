@@ -40,9 +40,14 @@
               </ion-item>
         
               <ion-item>
-                <ion-label floating>Descripción</ion-label>
-                <ion-input formControlName="description" type="text"></ion-input>
-            </ion-item>
+                <ion-label>Servicios ofrecidos</ion-label>
+                <ion-select 
+                [(ngModel)]="servicesOfered" 
+                multiple="true"
+                formControlName="servicesOfered">
+                  <ion-option *ngFor="let service of services" [value]="service.id">{{service.name}}</ion-option>
+                </ion-select>
+              </ion-item>
       
            </form>
            <button ion-button full color="secondary" (click)="register()">Registrarse</button>             

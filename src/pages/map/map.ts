@@ -6,6 +6,7 @@ import { OrderInfoModalPage } from '../order-info-modal/order-info-modal';
 import { Geolocation, Geoposition, PositionError } from '@ionic-native/geolocation';
 import { OrderProvider } from '../../providers/order/order';
 import { ApiProvider } from '../../providers/api/api';
+import { MainProviderPage } from '../main-provider/main-provider';
 
 declare var google
 
@@ -25,6 +26,9 @@ export class MapPage {
   currentOrder: any
   positionMarker: any
   currentPosition: any
+  timeRemaining: any
+  isInCourse: any
+  positionInterval: any
 
 
   constructor(public navCtrl: NavController,
@@ -47,6 +51,8 @@ export class MapPage {
       pet: this.navParams.get('pet'),
       service: this.navParams.get('service'),
     }
+    this.timeRemaining = null
+    this.isInCourse = false
 
   }
 
@@ -75,7 +81,7 @@ export class MapPage {
       //Add marker for order and display route
       this.addMarker(latLng)
       this.calculateAndDisplayRoute(directionsService, directionsDisplay)
-      setInterval(() => { this.autoUpdatePosition() }, 5000)
+      this.positionInterval = setInterval(() => { this.autoUpdatePosition() }, 5000)
     }
   }
 
@@ -88,10 +94,59 @@ export class MapPage {
         this.location = { lat: this.map.getCenter().lat(), lng: this.map.getCenter().lng() }
         this.getReverseGeocodingData(this.location.lat, this.location.lng)
       })
+    
     }
 
   }
 
+
+  orderStart(){
+    this.isInCourse = true
+    let seconds = 60 * 60 //One hour
+    let orderInfo = {
+      provider_id: this.order.getUserId(), 
+      order_id: this.currentOrder.id
+    }
+
+      this.api.post('provider/orders/start/' + orderInfo.provider_id, orderInfo).subscribe(data =>{
+        data = data.json()
+        console.log(data)
+        if(data.status == 0){
+          //Order accepted, notify the server
+          let counter = setInterval(()=>{
+            if(seconds == 0){
+              console.log("Ya puedes regresar al perritu")
+              clearInterval(counter)
+            }else{
+              seconds -= 1
+              this.timeRemaining = new Date(1970, 0, 1).setSeconds(seconds)
+            }
+      
+          }, 1000)
+        }
+        this.api.showNotification(data['message'])
+    })
+  }
+
+
+  orderFinish(){
+    //TODO: Validate if time has finished
+    clearInterval(this.positionInterval)
+    console.log('cleared interval')
+    let orderInfo = {
+      provider_id: this.order.getUserId(), 
+      order_id: this.currentOrder.id
+    }
+    this.api.post('provider/orders/finish/' + orderInfo.provider_id, orderInfo).subscribe((data)=>{
+      data = data.json()
+      if(data.status == 0){
+        this.navCtrl.setRoot(MainProviderPage)
+      }
+      console.log(data)
+    })
+
+
+  }
 
 
 

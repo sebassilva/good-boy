@@ -6,6 +6,7 @@ import { Storage } from '@ionic/storage';
 import { MainProviderPage } from '../main-provider/main-provider';
 
 import { OrderProvider } from '../../providers/order/order';
+import { ApiProvider } from '../../providers/api/api';
 
 
 @IonicPage()
@@ -15,21 +16,26 @@ import { OrderProvider } from '../../providers/order/order';
 })
 export class RegisterProviderPage {
   userForm: FormGroup;
-  
+  services: any
+
   constructor(public navCtrl: NavController, 
     public navParams: NavParams, 
     public formBuilder: FormBuilder,
     public http: Http,
     public storage: Storage, 
-    public order: OrderProvider) {
+    public order: OrderProvider, 
+    public api: ApiProvider) {
 
+      this.api.get('service').subscribe(data => {
+        this.services = data.data
+      });
       this.userForm = this.formBuilder.group({
         name: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('[a-zA-Z ]*'), Validators.required])],
         lastname: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('[a-zA-Z ]*'), Validators.required])],
         email: ['', Validators.compose([Validators.maxLength(30), Validators.required])],
         password: ['', Validators.compose([Validators.maxLength(30), Validators.required])],
         telephone: ['', Validators.compose([Validators.maxLength(12),  Validators.required])],
-        description: ['', Validators.compose([Validators.maxLength(500),  Validators.required])],
+        servicesOfered: ['', Validators.compose([Validators.maxLength(500),  Validators.required])],
     });
 
 
@@ -39,20 +45,16 @@ export class RegisterProviderPage {
   register(){
     console.log('register')
     if(this.userForm.valid){
-    console.log('thi.userform.valid')      
+      console.log('thi.userform.valid')      
       let newUser = this.userForm.value
-      newUser['type'] = "user"
+      newUser['type'] = "provider"
       newUser['img'] = "default"
-      newUser['sharingCode'] = "user"
       newUser['docId'] = ""
       newUser['docAddress'] = ""
-      newUser["freeServices"] = 0
-      var link = 'http://localhost/api/provider/new';
-      console.log('Se está registrando el usuario')
-      this.http.post(link, newUser)
+
+      this.api.post('provider/new', newUser)
       .subscribe(data => {
         data = JSON.parse(data["_body"])
-        console.log(data.status)
         if(data.status == 0){
           console.log(data['api_token'])
           this.storage.set('api_token', data['api_token'])

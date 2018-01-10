@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ApiProvider } from '../../providers/api/api'
 import { OrderProvider } from '../../providers/order/order'
 import { MapPage } from '../map/map'
+import { OrderInfoModalPage } from '../order-info-modal/order-info-modal';
 
 
 @IonicPage()
@@ -22,7 +23,7 @@ export class MainProviderPage {
 
   getOrders(){
 
-    this.api.get('provider/orders/active/' + this.order.getUserId).subscribe(data =>{
+    this.api.get('provider/orders/active/' + this.order.getUserId()).subscribe(data =>{
       this.orders = data.data
     })
 
@@ -35,7 +36,7 @@ export class MainProviderPage {
       order_id: orderAccepted.id
     }
     console.log(orderInfo)
-    this.api.post('provider/orders/accept', orderInfo).subscribe(data =>{
+    this.api.post('provider/orders/accept/' + orderInfo.provider_id, orderInfo).subscribe(data =>{
       data = data.json()
       console.log(data)
       console.log(orderAccepted)
