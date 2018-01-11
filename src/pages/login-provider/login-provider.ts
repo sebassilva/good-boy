@@ -8,6 +8,7 @@ import { MainProviderPage } from '../main-provider/main-provider';
 
 
 import { OrderProvider } from '../../providers/order/order';
+import { ApiProvider } from '../../providers/api/api';
 import { DisableSideMenu } from '../../decorators/disable-side-menu.decorator';
 
 @DisableSideMenu()
@@ -26,7 +27,8 @@ export class LoginProviderPage {
     public formBuilder: FormBuilder,
     public http: Http,
     public storage: Storage, 
-    public order: OrderProvider) {
+    public order: OrderProvider, 
+    public api: ApiProvider) {
 
 
     this.userForm = formBuilder.group({
@@ -40,9 +42,8 @@ export class LoginProviderPage {
   login(){
     if(this.userForm.valid){
       let newUser = this.userForm.value
-      var link = 'http://localhost/api/provider/login';
       
-      this.http.post(link, newUser)
+      this.api.post('provider/login', newUser)
       .subscribe(data => {
         console.log(data)
         data = JSON.parse(data["_body"])

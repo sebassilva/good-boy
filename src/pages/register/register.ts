@@ -6,6 +6,7 @@ import { Storage } from '@ionic/storage';
 import { NewPetPage } from '../new-pet/new-pet';
 
 import { OrderProvider } from '../../providers/order/order';
+import { ApiProvider } from '../../providers/api/api';
 import { DisableSideMenu } from '../../decorators/disable-side-menu.decorator';
 
 @DisableSideMenu()
@@ -22,7 +23,8 @@ export class RegisterPage {
     public formBuilder: FormBuilder,
     public http: Http,
     public storage: Storage, 
-    public order: OrderProvider) {
+    public order: OrderProvider, 
+    public api: ApiProvider) {
 
       this.userForm = this.formBuilder.group({
         name: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('[a-zA-Z ]*'), Validators.required])],
@@ -45,9 +47,8 @@ export class RegisterPage {
       newUser['docId'] = ""
       newUser['docAddress'] = ""
       newUser["freeServices"] = 0
-      var link = 'http://localhost/api/user/new';
       console.log('Se está registrando el usuario')
-      this.http.post(link, newUser)
+      this.api.post('user/new', newUser)
       .subscribe(data => {
         data = JSON.parse(data["_body"])
         console.log(data.status)

@@ -9,15 +9,15 @@ export class ApiProvider {
   baseUrl: string
   constructor(public http: Http, public toastCtrl: ToastController) {
     console.log('Hello ApiProvider Provider');
-    this.baseUrl = "http://localhost/api"
+    this.baseUrl = "http://booxlab.com/goodboy/api/"
   }
 
   get(url){
-    return this.http.get('http://localhost/api/' + url).map(res => res.json())
+    return this.http.get(this.baseUrl+ url).map(res => res.json())
   }
 
   post(url, data){
-    return this.http.post('http://localhost/api/' + url, data)
+    return this.http.post(this.baseUrl+ url, data)
   }
 
 

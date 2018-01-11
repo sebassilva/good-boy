@@ -37,6 +37,7 @@
         "cordova-plugin-advanced-http": "^1.9.0",
         "cordova-plugin-camera": "^2.4.1",
         "cordova-plugin-compat": "^1.2.0",
+        "cordova-plugin-console": "^1.1.0",
         "cordova-plugin-device": "^1.1.4",
         "cordova-plugin-file": "^5.0.0",
         "cordova-plugin-file-transfer": "^1.7.0",
@@ -82,7 +83,8 @@
             },
             "cordova-plugin-file": {},
             "cordova-plugin-file-transfer": {},
-            "cordova-plugin-filepath": {}
+            "cordova-plugin-filepath": {},
+            "cordova-plugin-console": {}
         },
         "platforms": [
             "android",
