@@ -13,12 +13,11 @@
     <ion-list>
 
         <form [formGroup]="userForm">
-            <img src="{{pathForImage(lastImage)}}" style="width: 100%" [hidden]="lastImage === null">
-            <ion-buttons>
-                <button ion-button icon-left (click)="presentActionSheet()">
-                  <ion-icon name="camera"></ion-icon>Select Image
-                </button>
-              </ion-buttons>
+                <div class="button-round" (click)="openPhotoOptions()" text-center style="">
+                        <img [src]="imgPreview" class="userAvatar" height=100>
+
+                        <ion-icon name="add" class="addIcon"></ion-icon>
+                </div>
             <ion-item>
                 <ion-label floating>Nombre</ion-label>
                 <ion-input formControlName="name" type="text"></ion-input>

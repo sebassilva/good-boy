@@ -36,9 +36,7 @@ import { ApiProvider } from '../providers/api/api';
 import { ResumePage } from '../pages/resume/resume';
 
 /*camer plugins*/
-import { File } from '@ionic-native/file';
-import { Transfer } from '@ionic-native/transfer';
-import { FilePath } from '@ionic-native/file-path';
+
 import { Camera } from '@ionic-native/camera';
 
 
@@ -99,11 +97,8 @@ import { Camera } from '@ionic-native/camera';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     OrderProvider,
     ApiProvider, 
-    File,
-    Transfer,
-    Camera,
-    FilePath,
-  ]
+    Camera
+    ]
 })
 
 export class AppModule {
