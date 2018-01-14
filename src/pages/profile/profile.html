@@ -33,11 +33,11 @@
                 <ion-input formControlName="telephone" type="number"></ion-input>
             </ion-item>
 
-            <ion-item>
+            <ion-item *ngIf="!isProvider">
                 <ion-label floating>Tu código promocional</ion-label>
                 <ion-input formControlName="sharingCode" [disabled]="true" type="text"></ion-input>
             </ion-item>
-            <ion-item>
+            <ion-item *ngIf="!isProvider">
                 <ion-label floating>Servicios Gratuitos</ion-label>
                 <ion-input formControlName="freeServices" [disabled]="true" type="text"></ion-input>
             </ion-item>
@@ -46,10 +46,11 @@
     </ion-list>
 
 
+
+
+    <ion-list *ngIf="!isProvider">
     <h2 text-center>Mis mascotas</h2>
 
-
-    <ion-list>
         <ion-item *ngFor="let dog of dogs">
             <ion-avatar item-start>
                 <img src="assets/imgs/default-dog.png">

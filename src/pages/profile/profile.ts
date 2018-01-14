@@ -26,6 +26,7 @@ export class ProfilePage {
   newPet: any
   userId: number
   imgPreview: any
+  isProvider: boolean
 
   lastImage: string = null;
   loading: Loading;
@@ -53,6 +54,34 @@ export class ProfilePage {
       freeServices: ['', Validators.compose([Validators.maxLength(12),  Validators.required])],
     });
 
+
+
+    this.storage.get('is_provider').then(is_provider => {
+      is_provider ? this.providerConfig() : this.userConfig
+    })
+
+
+
+  }
+
+
+  providerConfig(){
+    this.isProvider = true
+    this.getProvider()
+  }
+
+  userConfig(){
+    //Get all the doggos
+    this.getUser()
+    this.api.get('user/pets/' + this.userId).subscribe(dogs =>{
+      console.log(dogs)
+      this.dogs = dogs
+    })
+  }
+
+
+
+  getUser(){
     this.storage.get('user_id').then(user_id=>{
       this.api.get('user/' + user_id).subscribe(user=>{
         this.userId = user.id
@@ -67,21 +96,33 @@ export class ProfilePage {
 
         })
       })
-
-      //Get all the doggos
-      this.api.get('user/pets/' + user_id).subscribe(dogs =>{
-        console.log(dogs)
-        this.dogs = dogs
-      })
-      
     })
   }
 
+  getProvider(){
+    this.storage.get('user_id').then(user_id=>{
+      this.api.get('provider/' + user_id).subscribe(user=>{
+        this.userId = user.id
+        this.imgPreview = this.api.getBaseUrl() + 'img/avatars/' +user.img
+        this.userForm.setValue({
+          name: user.name,
+          lastname: user.lastname,
+          //lastname: user.lastname, 
+          telephone: user.telephone, 
+          sharingCode: '', 
+          freeServices: ''
+
+        })
+      })
+    })
+  }
+  
 
   register(){
     let data = this.userForm.value
     data['id'] = this.userId
-    this.api.post('user/edit/' + this.userId, data).subscribe(res => {
+    let url = (this.isProvider) ? 'provider' : 'user'
+    this.api.post(url  + '/edit/' + this.userId, data).subscribe(res => {
       res = res.json()
       this.showNotification(res['message'])
     })
@@ -118,7 +159,7 @@ export class ProfilePage {
 
 
 
-
+  /*Photo aux functions*/
 
   openPhotoOptions() {
     this.alertCtrl.create({
@@ -165,7 +206,7 @@ export class ProfilePage {
 
       this.storage.get('is_provider').then(is_provider => {
         let url = is_provider ? 'user/profilePicture' : 'provider/profilePicture'
-        this.api.post('user/profilePicture/' + postData.user_id, postData).subscribe(data => {
+        this.api.post(url + postData.user_id, postData).subscribe(data => {
           data = data.json()
           this.api.showNotification(data['message'])
           console.log(data)
