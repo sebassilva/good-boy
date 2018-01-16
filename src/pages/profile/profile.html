@@ -14,8 +14,7 @@
 
         <form [formGroup]="userForm">
                 <div class="button-round" (click)="openPhotoOptions()" text-center style="">
-                        <img [src]="imgPreview" class="userAvatar" height=100>
-
+                        <img [src]="imgPreview" class="userAvatar" height=100 *ngIf="imgPreview">
                         <ion-icon name="add" class="addIcon"></ion-icon>
                 </div>
             <ion-item>
@@ -41,8 +40,13 @@
                 <ion-label floating>Servicios Gratuitos</ion-label>
                 <ion-input formControlName="freeServices" [disabled]="true" type="text"></ion-input>
             </ion-item>
+            <ion-item *ngIf="isProvider">
+                <ion-label>Comentarios de Goodboy</ion-label>
+                <ion-textarea formControlName="comments" name="description"></ion-textarea>
+              </ion-item>
         </form>
         <button ion-button full color="primary" (click)="register()">Actualizar</button>             
+        <button ion-button full color="secondary" (click)="documents()" *ngIf="isProvider">Documentos</button>             
     </ion-list>
 
 

@@ -10,10 +10,10 @@ export class ApiProvider {
   baseUrl: string
   constructor(public http: Http, public toastCtrl: ToastController) {
     console.log('Hello ApiProvider Provider');
-    this.apiUrl = "http://booxlab.com/goodboy/api/"
-    this.baseUrl = "http://booxlab.com/goodboy/"
-    // this.apiUrl = "http://localhost/api/" 
-    // this.baseUrl = "http://localhost/"
+    // this.apiUrl = "http://booxlab.com/goodboy/api/"
+    // this.baseUrl = "http://booxlab.com/goodboy/"
+    this.apiUrl = "http://localhost/api/" 
+    this.baseUrl = "http://localhost/"
   }
 
   get(url){

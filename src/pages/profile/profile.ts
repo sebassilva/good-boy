@@ -3,6 +3,8 @@ import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angu
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { Storage } from '@ionic/storage'
 import { NewPetPage } from '../new-pet/new-pet'
+import { ProviderLegalsPage } from '../provider-legals/provider-legals'
+
 import { ApiProvider } from '../../providers/api/api'
 import { ToastController } from 'ionic-angular';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -52,6 +54,7 @@ export class ProfilePage {
       telephone: ['', Validators.compose([Validators.maxLength(12),  Validators.required])],
       sharingCode: ['', Validators.compose([Validators.maxLength(12),  Validators.required])],
       freeServices: ['', Validators.compose([Validators.maxLength(12),  Validators.required])],
+      comments: ['', Validators.compose([Validators.maxLength(12),  Validators.required])],
     });
 
 
@@ -89,7 +92,6 @@ export class ProfilePage {
         this.userForm.setValue({
           name: user.name,
           lastname: user.lastname,
-          //lastname: user.lastname, 
           telephone: user.telephone, 
           sharingCode: user.sharingCode, 
           freeServices: user.freeServices
@@ -107,10 +109,10 @@ export class ProfilePage {
         this.userForm.setValue({
           name: user.name,
           lastname: user.lastname,
-          //lastname: user.lastname, 
           telephone: user.telephone, 
           sharingCode: '', 
-          freeServices: ''
+          freeServices: '', 
+          comments: user.comments
 
         })
       })
@@ -150,7 +152,9 @@ export class ProfilePage {
   }
 
 
-
+  documents(){
+    this.navCtrl.push( ProviderLegalsPage )
+  }
 
 
 

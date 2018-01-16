@@ -1,18 +1,23 @@
-<!--
-  Generated template for the ProviderLegalsPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
 
   <ion-navbar>
-    <ion-title>providerLegals</ion-title>
+    <ion-title>Documentos</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-
+    <h4 text-center>Documentos</h4>
+    <h6 text-center>Aquí puedes subir todos los documentos que necesitas</h6>
+    <ion-card *ngFor="let doc of docs" (click)="openPhotoOptions(doc.id)">
+      <img src="assets/imgs/shower-dog.png"/>
+      <ion-card-content>
+        <ion-card-title>
+          {{doc.name}}
+        </ion-card-title>
+        <!-- <p>Para: {{order.pet.name}}</p> -->
+      </ion-card-content>
+    </ion-card>
+  
 </ion-content>

@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Http } from '@angular/http'
 import { Storage } from '@ionic/storage';
 import { MainProviderPage } from '../main-provider/main-provider';
+import { ProviderLegalsPage } from '../provider-legals/provider-legals';
 
 import { OrderProvider } from '../../providers/order/order';
 import { ApiProvider } from '../../providers/api/api';
@@ -63,7 +64,7 @@ export class RegisterProviderPage {
           this.storage.set('user_id', data['user']['id'])
           this.storage.set('is_provider', true)
           this.order.setUserId(data['user']['id'])
-          this.navCtrl.setRoot( MainProviderPage )
+          this.navCtrl.setRoot( ProviderLegalsPage )
   
         }else{
           console.log("no se ha podido crear el usuario")
