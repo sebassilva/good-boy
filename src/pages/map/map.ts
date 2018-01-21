@@ -29,6 +29,7 @@ export class MapPage {
   timeRemaining: any
   isInCourse: any
   positionInterval: any
+  currentPositionMarker: any
 
 
   constructor(public navCtrl: NavController,
@@ -79,7 +80,7 @@ export class MapPage {
       directionsDisplay.setMap(this.map);
 
       //Add marker for order and display route
-      this.addMarker(latLng)
+      this.addMarker(latLng, 'Tu ubicación actual')
       this.calculateAndDisplayRoute(directionsService, directionsDisplay)
       this.positionInterval = setInterval(() => { this.autoUpdatePosition() }, 5000)
     }
@@ -206,7 +207,7 @@ export class MapPage {
   }
 
 
-  addMarker(position) {
+  addMarker(position, message) {
     console.log('adding marter')
     let marker = new google.maps.Marker({
       map: this.map,
@@ -273,14 +274,36 @@ export class MapPage {
 
   autoUpdatePosition() {
     this.geolocation.getCurrentPosition().then((position) => {
-      let data = {
+      let postData = {
         user_id: this.order.getUserId(), 
         lat: position.coords.latitude, 
         lng: position.coords.longitude
       }
-      this.api.post('provider/updateLocation/' + data.user_id, data).subscribe(data => {
+      this.api.post('provider/updateLocation/' + postData.user_id, postData).subscribe(data => {
         data = data.json()
         console.log(data)
+        
+        if(this.currentPositionMarker){
+          this.currentPositionMarker.setPosition({lat: postData.lat, lng: postData.lng})
+
+        }else{
+          this.currentPositionMarker = new google.maps.Marker({
+            map: this.map,
+            position: {lat: postData.lat, lng: postData.lng}
+          });
+          let content = "<h4>Tu ubicación actual</h4>";
+          this.addInfoWindow(this.currentPositionMarker, content);
+  
+        }
+
+
+
+
+       
+
+
+
+
       })
     })
   }
