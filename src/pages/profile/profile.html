@@ -14,7 +14,7 @@
 
         <form [formGroup]="userForm">
                 <div class="button-round" (click)="openPhotoOptions()" text-center style="">
-                        <img [src]="imgPreview" class="userAvatar" height=100 *ngIf="imgPreview">
+                        <img [src]="imgPreview" class="userAvatar" height=100 *ngIf="!imgPreview">
                         <ion-icon name="add" class="addIcon"></ion-icon>
                 </div>
             <ion-item>
@@ -42,7 +42,7 @@
             </ion-item>
             <ion-item *ngIf="isProvider">
                 <ion-label>Comentarios de Goodboy</ion-label>
-                <ion-textarea formControlName="comments" name="description"></ion-textarea>
+                <ion-textarea formControlName="comments" name="description" disabled="true"></ion-textarea>
               </ion-item>
         </form>
         <button ion-button full color="primary" (click)="register()">Actualizar</button>             
@@ -55,7 +55,7 @@
     <ion-list *ngIf="!isProvider">
     <h2 text-center>Mis mascotas</h2>
 
-        <ion-item *ngFor="let dog of dogs">
+        <ion-item *ngFor="let dog of dogs" (click)="editDog(dog)">
             <ion-avatar item-start>
                 <img src="assets/imgs/default-dog.png">
             </ion-avatar>

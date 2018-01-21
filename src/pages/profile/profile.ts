@@ -60,7 +60,7 @@ export class ProfilePage {
 
 
     this.storage.get('is_provider').then(is_provider => {
-      is_provider ? this.providerConfig() : this.userConfig
+      is_provider ? this.providerConfig() : this.userConfig()
     })
 
 
@@ -75,11 +75,16 @@ export class ProfilePage {
 
   userConfig(){
     //Get all the doggos
-    this.getUser()
-    this.api.get('user/pets/' + this.userId).subscribe(dogs =>{
-      console.log(dogs)
-      this.dogs = dogs
+    this.storage.get('user_id').then(user_id=>{
+      console.log('get users')
+      this.getUser()
+      this.api.get('user/pets/' + user_id).subscribe(dogs =>{
+        console.log(dogs)
+        this.dogs = dogs
+      })
+
     })
+
   }
 
 
@@ -94,7 +99,9 @@ export class ProfilePage {
           lastname: user.lastname,
           telephone: user.telephone, 
           sharingCode: user.sharingCode, 
-          freeServices: user.freeServices
+          freeServices: user.freeServices, 
+          comments: ''
+
 
         })
       })
@@ -161,7 +168,9 @@ export class ProfilePage {
 
 
 
-
+  editDog(dog){
+    this.navCtrl.push( NewPetPage, dog)
+  }
 
   /*Photo aux functions*/
 

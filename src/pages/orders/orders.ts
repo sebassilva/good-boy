@@ -10,15 +10,16 @@ import { OrderProvider } from '../../providers/order/order';
 })
 export class OrdersPage {
 
-    orders: any  
+    currentOrders: any  
+    finishedOrders: any  
   constructor(public navCtrl: NavController, 
     public navParams: NavParams, 
     public order: OrderProvider, 
     public api: ApiProvider) {
 
       this.api.get('order/all/' + this.order.getUserId()).subscribe(data =>{
-        console.log(data)
-        this.orders = data.data
+        this.currentOrders = data.data.filter((order) => order.status_id < 6)
+        this.finishedOrders = data.data.filter((order) => order.status_id >= 6)
       })
     }
 

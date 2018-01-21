@@ -9,8 +9,8 @@
 
 
 <ion-content padding>
-  <h4 text-center>Resúmen de tus órdenes</h4>
-  <ion-card *ngFor="let order of orders">
+  <h4 text-center *ngIf="!finishedOrder">Órdenes Actuales</h4>
+  <ion-card *ngFor="let order of currentOrders">
     <img src="assets/imgs/shower-dog.png"/>
     <ion-card-content>
       <ion-card-title>
@@ -18,10 +18,24 @@
       </ion-card-title>
       <p>Para: {{order.pet.name}}</p>
       <p>Ordenado:   {{order.created_at | date:"medium"}}</p>
-      <p>Estado actual:   {{order.status_id}}</p>
+      <p>Estado actual:   {{order.status}}</p>
       <p><b>Total: $ {{order.grandTotal | number:"1.2-2"}}</b></p>
     </ion-card-content>
   </ion-card>
+  <br>
 
+  <h4 text-center *ngIf="!finishedOrders">Órdenes Anteriores</h4>
+  <ion-card *ngFor="let order of finishedOrders">
+    <img src="assets/imgs/shower-dog.png"/>
+    <ion-card-content>
+      <ion-card-title>
+        {{order.service}}
+      </ion-card-title>
+      <p>Para: {{order.pet.name}}</p>
+      <p>Ordenado:   {{order.created_at | date:"medium"}}</p>
+      <p>Estado actual:   {{order.status}}</p>
+      <p><b>Total: $ {{order.grandTotal | number:"1.2-2"}}</b></p>
+    </ion-card-content>
+  </ion-card>
 
 </ion-content>
