@@ -296,14 +296,6 @@ export class MapPage {
   
         }
 
-
-
-
-       
-
-
-
-
       })
     })
   }

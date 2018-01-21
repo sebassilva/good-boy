@@ -9,9 +9,9 @@
 
 
 <ion-content padding>
-  <h4 text-center>Órdenes</h4>
-  <h4 *ngIf="!orders">No hay órdenes disponibles</h4>
-  <ion-card *ngFor="let order of orders">
+  <h4 text-center>Órdenes Actuales</h4>
+  <h4 *ngIf="!currentOrders">No hay órdenes disponibles</h4>
+  <ion-card *ngFor="let order of currentOrders">
     <img src="assets/imgs/shower-dog.png"/>
     <ion-card-content>
       <ion-card-title>
@@ -23,4 +23,24 @@
       <button ion-button full color="secondary" (click)="accept(order)">Aceptar Orden</button>             
     </ion-card-content>
   </ion-card>
+
+  <h4 text-center>Órdenes Terminadas</h4>
+  <h4 *ngIf="!finishedOrders">No hay órdenes disponibles</h4>
+  <ion-card *ngFor="let order of finishedOrders">
+    <img src="assets/imgs/shower-dog.png"/>
+    <ion-card-content>
+      <ion-card-title>
+        {{order.service}}
+      </ion-card-title>
+      <p>Para: {{order.pet.name}}</p>
+      <p>Ordenado:   {{order.created_at | date:"medium"}}</p>
+      <p>Estado actual:   {{order.status}}</p>
+      <button 
+        ion-button 
+        full color="secondary" 
+        (click)="accept(order)"
+        *ngIf="order.status_id < 6">Aceptar Orden</button>             
+    </ion-card-content>
+  </ion-card>
+
 </ion-content>

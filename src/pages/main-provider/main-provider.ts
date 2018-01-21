@@ -12,7 +12,8 @@ import { OrderInfoModalPage } from '../order-info-modal/order-info-modal';
   templateUrl: 'main-provider.html',
 })
 export class MainProviderPage {
-  orders: any
+  currentOrders: any
+  finishedOrders: any
   constructor(public navCtrl: NavController, 
     public navParams: NavParams, 
     public api: ApiProvider, 
@@ -24,9 +25,12 @@ export class MainProviderPage {
   getOrders(){
 
     this.api.get('provider/orders/active/' + this.order.getUserId()).subscribe(data =>{
-      this.orders = data.data
+      this.currentOrders = data.data
     })
 
+    this.api.get('provider/orders/finished/' + this.order.getUserId()).subscribe(data =>{
+      this.finishedOrders = data.data
+    })
   }
 
 
