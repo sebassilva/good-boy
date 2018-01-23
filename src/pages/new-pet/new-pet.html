@@ -10,9 +10,10 @@
 <ion-content padding>
     <ion-list *ngIf="!formComplete">
         <h4 text-center>Agrega una mascota</h4>
+        <h4 text-center>Editar información</h4>
            <form [formGroup]="userForm">
                 <div class="button-round" (click)="openPhotoOptions()" text-center style="">
-                        <img [src]="imgPreview" class="userAvatar" height=100 *ngIf="!imgPreview">
+                        <img [src]="imgPreview" class="userAvatar" height=100 *ngIf="imgPreview">
                         <ion-icon name="add" class="addIcon"></ion-icon>
                 </div>
                <ion-item>

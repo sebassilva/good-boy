@@ -1,11 +1,16 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { IonicPage, NavController, NavParams } from 'ionic-angular'
+import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { Http } from '@angular/http'
-import { Storage } from '@ionic/storage';
+import { Storage } from '@ionic/storage'
 import { SelectServicePage } from '../select-service/select-service'
-import { ApiProvider } from '../../providers/api/api';
+import { ApiProvider } from '../../providers/api/api'
 
+import { DomSanitizer } from '@angular/platform-browser'
+import {  ActionSheetController, Platform, LoadingController, Loading } from 'ionic-angular'
+import { OrderProvider } from '../../providers/order/order'
+import { Camera, CameraOptions } from '@ionic-native/camera'
+import { AlertController } from 'ionic-angular/components/alert/alert-controller';
 
 @IonicPage()
 @Component({
@@ -18,13 +23,19 @@ export class NewPetPage {
   foods: any
   dog: any
   isEdition: boolean
+  imgPreview: any
+  base64Image
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,    
     public formBuilder: FormBuilder,
     public http: Http,
     public storage: Storage, 
-    public api: ApiProvider) {
+    public api: ApiProvider, 
+    public alertCtrl: AlertController, 
+    public camera: Camera,
+    public domSanitizer: DomSanitizer, 
+    ) {
 
       (this.navParams.get('id')) ? this.isEdition = true : this.isEdition = false
 
@@ -41,16 +52,18 @@ export class NewPetPage {
 
 
     if(this.isEdition){
-      this.userForm.setValue({
-         name: this.navParams.get('name'), 
-         breed: this.navParams.get('breed'), 
-         profile: this.navParams.get('profile'), 
-         food_id: this.navParams.get('food_id')
+      this.api.get('pet/getById/' + this.navParams.get('id')).subscribe(data => {
+        this.imgPreview = this.api.getBaseUrl() + 'img/pets/' + data.data.img
       })
+      this.userForm.setValue({
+        name: this.navParams.get('name'), 
+        breed: this.navParams.get('breed'), 
+        profile: this.navParams.get('profile'), 
+        food_id: this.navParams.get('food_id')
+     })
      }
-
-
   }
+
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad NewPetPage');
@@ -62,7 +75,6 @@ export class NewPetPage {
    }else{
      this.newPet()
    }
-
   }
 
 
@@ -95,6 +107,7 @@ export class NewPetPage {
     }   
   }
 
+
   editPet(){
     if(this.userForm.valid){
       let newUser = this.userForm.value
@@ -110,6 +123,7 @@ export class NewPetPage {
           console.log(data.status)
           //Go back and notify
           if(data.status == 0){
+            this.uploadPhoto()
             this.navCtrl.pop()
           }
           this.api.showNotification(data['message'])
@@ -118,8 +132,6 @@ export class NewPetPage {
             console.log("Ha ocurrido un error con la conexión al servidor");
         });
       })
-    
-
     }   
 
   }
@@ -131,4 +143,78 @@ export class NewPetPage {
     this.userForm.reset()
     this.formComplete = false
   }
+
+
+
+
+
+
+
+
+
+
+
+
+  /*Photo aux functions*/
+
+  openPhotoOptions() {
+    this.alertCtrl.create({
+      title: 'Seleccionar medio',
+      buttons: [{ text: 'Cámara', handler: data => { this.openCam('camera') } }, { text: 'Galería', handler: data => { this.openCam('gallery') } }]
+    }).present();
+  }
+  openCam(source) {
+    
+  let cameraOptions: CameraOptions;
+  if (source === "camera") {
+    cameraOptions = {
+      quality: 40,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE,
+      correctOrientation: true,
+      targetWidth: 500,
+      targetHeight: 750
+    }
+
+  } else {
+    cameraOptions = {
+      sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      quality: 40,
+      targetWidth: 500,
+      targetHeight: 750,
+      encodingType: this.camera.EncodingType.JPEG,
+      correctOrientation: true
+    }
+
+
+  }
+
+  this.camera.getPicture(cameraOptions)
+    .then((imageData) => {
+      this.base64Image = 'data:image/jpeg;base64,' + imageData
+      this.imgPreview = this.domSanitizer.bypassSecurityTrustUrl(this.base64Image)
+    })
+  }
+
+  uploadPhoto(){
+      let postData = {
+        pet_id: this.navParams.get('id'), 
+        img: this.base64Image
+      }
+  
+      this.storage.get('is_provider').then(is_provider => {
+        this.api.post('pet/profilePicture/' + this.navParams.get('id'), postData).subscribe(data => {
+          data = data.json()
+          this.api.showNotification(data['message'])
+          console.log(data)
+        })
+      })
+    
+    
+
+  }
+
+
 }
