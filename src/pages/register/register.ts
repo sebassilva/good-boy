@@ -49,29 +49,23 @@ export class RegisterPage {
       newUser["freeServices"] = 0
       console.log('Se está registrando el usuario')
       this.api.post('user/new', newUser)
+      .map(response => response.json())
       .subscribe(data => {
-        data = JSON.parse(data["_body"])
-        console.log(data.status)
         if(data.status == 0){
-          console.log(data['api_token'])
-          this.storage.set('api_token', data['api_token'])
-          this.storage.set('user_id', data['user']['id'])
-          this.order.setUserId(data['user']['id'])
+          console.log(data.api_token)
+          this.storage.set('api_token', data.api_token)
+          this.storage.set('user_id', data.user.id)
+          this.storage.set('is_provider', false)
+          this.order.setUserId(data.user.id)
           this.navCtrl.setRoot( NewPetPage )
   
         }else{
-          console.log("no se ha podido crear el usuario")
-        }
-  
-  
-        
+          this.api.showNotification(data.message)
+        }   
       }, error => {
-          console.log("Ha ocurrido un error con la conexión al servidor");
+        this.api.showNotification("Ha ocurrido un problema con la conexión al servidor")
       });
-  
-    
-    
-    
+
     }      
    
   }

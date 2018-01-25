@@ -78,7 +78,9 @@ export class ProfilePage {
     this.storage.get('user_id').then(user_id=>{
       console.log('get users')
       this.getUser()
-      this.api.get('user/pets/' + user_id).subscribe(dogs =>{
+      this.api.post('user/pets/' + user_id, {user_id: user_id})
+      .map(response => response.json())
+      .subscribe(dogs =>{
         dogs.forEach(dog => dog.img = this.api.getBaseUrl() + 'img/pets/' + dog.img)
         this.dogs = dogs
       })
@@ -91,7 +93,9 @@ export class ProfilePage {
 
   getUser(){
     this.storage.get('user_id').then(user_id=>{
-      this.api.get('user/' + user_id).subscribe(user=>{
+      this.api.post('user/get', {user_id: user_id})
+      .map(response => response.json())
+      .subscribe(user=>{
         this.userId = user.id
         this.imgPreview = this.api.getBaseUrl() + 'img/avatars/' +user.img
         this.userForm.setValue({
@@ -101,16 +105,17 @@ export class ProfilePage {
           sharingCode: user.sharingCode, 
           freeServices: user.freeServices, 
           comments: ''
-
-
         })
       })
     })
   }
 
+
   getProvider(){
     this.storage.get('user_id').then(user_id=>{
-      this.api.get('provider/' + user_id).subscribe(user=>{
+      this.api.post('provider/get', {user_id: user_id})
+      .map(response => response.json())
+      .subscribe(user=>{
         this.userId = user.id
         this.imgPreview = this.api.getBaseUrl() + 'img/avatars/' +user.img
         this.userForm.setValue({
@@ -131,8 +136,9 @@ export class ProfilePage {
     let data = this.userForm.value
     data['id'] = this.userId
     let url = (this.isProvider) ? 'provider' : 'user'
-    this.api.post(url  + '/edit/' + this.userId, data).subscribe(res => {
-      res = res.json()
+    this.api.post(url  + '/edit/' + this.userId, data)
+    .map(response => response.json())
+    .subscribe(res => {
       this.showNotification(res['message'])
     })
     //if image is selected
@@ -219,10 +225,10 @@ export class ProfilePage {
 
       this.storage.get('is_provider').then(is_provider => {
         let url = is_provider ? 'user/profilePicture' : 'provider/profilePicture'
-        this.api.post(url + postData.user_id, postData).subscribe(data => {
-          data = data.json()
-          this.api.showNotification(data['message'])
-          console.log(data)
+        this.api.post(url + postData.user_id, postData)
+        .map(response => response.json())
+        .subscribe(data => {
+          this.api.showNotification(data.message)
         })
       })
 

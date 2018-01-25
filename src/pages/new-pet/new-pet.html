@@ -14,7 +14,7 @@
            <form [formGroup]="userForm">
                 <div class="button-round" (click)="openPhotoOptions()" text-center style="">
                         <img [src]="imgPreview" class="userAvatar" height=100 *ngIf="imgPreview">
-                        <ion-icon name="add" class="addIcon"></ion-icon>
+                        <ion-icon name="add" class="addIcon" *ngIf="!imgPreview"></ion-icon>
                 </div>
                <ion-item>
                    <ion-label floating>Nombre</ion-label>

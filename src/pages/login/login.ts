@@ -47,24 +47,21 @@ export class LoginPage {
       let newUser = this.userForm.value
       
       this.api.post('user/login', newUser)
+      .map(response => response.json())
       .subscribe(data => {
         console.log(data)
-        data = JSON.parse(data["_body"])
-        if(data.status == 0){
-          console.log(data['api_token'])
-          this.storage.set('api_token', data['api_token'])
-          this.storage.set('user_id', data['user']['id'])
+        if(data.status === 0){
+          console.log(data.api_token)
+          this.storage.set('api_token', data.api_token)
+          this.storage.set('user_id', data.user.id)
+          this.storage.set('is_provider', false)
           this.navCtrl.setRoot( SelectServicePage )
-          this.order.setUserId(data['user']['id'])
-          
+          this.order.setUserId(data.user.id)
         }else{
-          console.log("No se ha pododp iniciar sesión")
+          this.api.showNotification(data.message)
         }
-  
-  
-        
       }, error => {
-          console.log("Ha ocurrido un error con la conexión al servidor");
+        this.api.showNotification("Ha ocurrido un problema con la conexión al servidor")
       });
     }
 

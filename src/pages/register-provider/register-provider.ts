@@ -57,7 +57,7 @@ export class RegisterProviderPage {
 
       this.api.post('provider/new', newUser)
       .subscribe(data => {
-        data = JSON.parse(data["_body"])
+        data = data.json()
         if(data.status == 0){
           console.log(data['api_token'])
           this.storage.set('api_token', data['api_token'])
@@ -67,13 +67,10 @@ export class RegisterProviderPage {
           this.navCtrl.setRoot( ProviderLegalsPage )
   
         }else{
-          console.log("no se ha podido crear el usuario")
-        }
-  
-  
-        
+          this.api.showNotification(data['message'])
+        }      
       }, error => {
-          console.log("Ha ocurrido un error con la conexión al servidor");
+        this.api.showNotification("Ha ocurrido un problema con la conexión al servidor")
       });
   
     

@@ -56,13 +56,10 @@ export class LoginProviderPage {
           this.navCtrl.setRoot( MainProviderPage )
 
         }else{
-          console.log("No se ha pododp iniciar sesión")
+          this.api.showNotification(data['message'])
         }
-  
-  
-        
       }, error => {
-          console.log("Ha ocurrido un error con la conexión al servidor");
+          this.api.showNotification("Ha ocurrido un problema con la conexión al servidor")
       });
     }
   }

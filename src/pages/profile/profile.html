@@ -14,7 +14,7 @@
 
         <form [formGroup]="userForm">
                 <div class="button-round" (click)="openPhotoOptions()" text-center style="">
-                        <img [src]="imgPreview" class="userAvatar" height=100 *ngIf="!imgPreview">
+                        <img [src]="imgPreview" class="userAvatar" height=100 *ngIf="imgPreview">
                         <ion-icon name="add" class="addIcon"></ion-icon>
                 </div>
             <ion-item>
@@ -57,11 +57,10 @@
 
         <ion-item *ngFor="let dog of dogs" (click)="editDog(dog)">
             <ion-avatar item-start>
-                <img src="assets/imgs/default-dog.png">
+                <img [src]="dog.img">
             </ion-avatar>
             <h2>{{dog.name}}</h2>
             <h3>{{dog.breed}}</h3>
-            <p>I've had a pretty messed up day. If we just...</p>
         </ion-item>
         <button ion-button full color="secondary" [navPush]="newPet">Agregar mascota</button>             
       </ion-list>

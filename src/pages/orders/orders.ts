@@ -17,7 +17,7 @@ export class OrdersPage {
     public order: OrderProvider, 
     public api: ApiProvider) {
 
-      this.api.get('order/all/' + this.order.getUserId()).subscribe(data =>{
+      this.api.post('order/all/' + this.order.getUserId(), {user_id: this.order.getUserId()}).map(response => response.json()).subscribe(data =>{
         this.currentOrders = data.data.filter((order) => order.status_id < 6)
         this.finishedOrders = data.data.filter((order) => order.status_id >= 6)
       })
