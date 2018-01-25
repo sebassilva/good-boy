@@ -80,7 +80,7 @@ export class MapPage {
       directionsDisplay.setMap(this.map);
 
       //Add marker for order and display route
-      this.addMarker(latLng, 'Tu ubicación actual')
+      // this.addMarker(latLng, 'Tu ubicación actual')
       this.calculateAndDisplayRoute(directionsService, directionsDisplay)
       this.positionInterval = setInterval(() => { this.autoUpdatePosition() }, 5000)
     }
@@ -179,7 +179,7 @@ export class MapPage {
 
       let mapOptions = {
         center: latLng,
-        zoom: 13,
+        zoom: 15,
         mapTypeId: google.maps.MapTypeId.ROADMAP,
         zoomControl: false,
         mapTypeControl: false,
@@ -214,8 +214,7 @@ export class MapPage {
       animation: google.maps.Animation.DROP,
       position: position
     });
-    let content = "<h4>Information!</h4>";
-    this.addInfoWindow(marker, content);
+    this.addInfoWindow(marker, message);
   }
 
 
