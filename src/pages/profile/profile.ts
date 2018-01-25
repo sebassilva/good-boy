@@ -79,7 +79,7 @@ export class ProfilePage {
       console.log('get users')
       this.getUser()
       this.api.get('user/pets/' + user_id).subscribe(dogs =>{
-        console.log(dogs)
+        dogs.forEach(dog => dog.img = this.api.getBaseUrl() + 'img/pets/' + dog.img)
         this.dogs = dogs
       })
 
