@@ -9,7 +9,8 @@
 
 
 <ion-content padding>
-  <h4 text-center *ngIf="!finishedOrder">Órdenes Actuales</h4>
+  <h4 text-center *ngIf="currentOrders">Órdenes Actuales</h4>
+  <p *ngIf="!currentOrders">No hay órdenes actuales</p>
   <ion-card *ngFor="let order of currentOrders">
     <img src="assets/imgs/shower-dog.png"/>
     <ion-card-content>
@@ -24,7 +25,8 @@
   </ion-card>
   <br>
 
-  <h4 text-center *ngIf="!finishedOrders">Órdenes Anteriores</h4>
+  <h4 text-center *ngIf="finishedOrders">Órdenes Anteriores</h4>
+  <p *ngIf="!finishedOrders">No hay órdenes anteriores</p>
   <ion-card *ngFor="let order of finishedOrders">
     <img src="assets/imgs/shower-dog.png"/>
     <ion-card-content>
