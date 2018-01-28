@@ -17,9 +17,13 @@ export class ChooseDogPage {
     public navParams: NavParams, 
     public api: ApiProvider, 
     public order: OrderProvider) {
+      this.dogs = []
 
-      this.api.get('user/pets/' + this.order.getUserId()).subscribe(data =>{
-        this.dogs = data  
+      this.api.post('user/pets', {user_id: this.order.getUserId()})
+      .map(res => res.json())
+      .subscribe(dogs =>{
+        dogs.forEach(dog => dog.img = (dog.img != 'default') ? this.api.getBaseUrl() + 'img/pets/' + dog.img : null)
+        this.dogs = dogs
         console.log(this.dogs)
       })
   }
