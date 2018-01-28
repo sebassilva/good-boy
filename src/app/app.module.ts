@@ -28,6 +28,7 @@ import { RegisterProviderPage } from '../pages/register-provider/register-provid
 import { MainProviderPage } from '../pages/main-provider/main-provider';
 import { OrderInfoModalPage } from '../pages/order-info-modal/order-info-modal';
 import { ProviderLegalsPage } from '../pages/provider-legals/provider-legals';
+import { PaymentPage } from '../pages/payment/payment';
 
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -40,6 +41,7 @@ import { ResumePage } from '../pages/resume/resume';
 
 import { Camera } from '@ionic-native/camera';
 
+import { PayPal, PayPalPayment, PayPalConfiguration } from '@ionic-native/paypal';
 
 @NgModule({
   declarations: [
@@ -62,7 +64,8 @@ import { Camera } from '@ionic-native/camera';
     RegisterProviderPage, 
     MainProviderPage, 
     OrderInfoModalPage, 
-    ProviderLegalsPage
+    ProviderLegalsPage, 
+    PaymentPage
   ],
   imports: [
     BrowserModule,
@@ -91,7 +94,8 @@ import { Camera } from '@ionic-native/camera';
     RegisterProviderPage, 
     MainProviderPage, 
     OrderInfoModalPage, 
-    ProviderLegalsPage
+    ProviderLegalsPage, 
+    PaymentPage
   ],
   providers: [
     StatusBar,
@@ -100,7 +104,8 @@ import { Camera } from '@ionic-native/camera';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     OrderProvider,
     ApiProvider, 
-    Camera
+    Camera, 
+    PayPal
     ]
 })
 
