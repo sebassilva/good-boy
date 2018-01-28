@@ -12,30 +12,68 @@ import { OrdersPage } from '../orders/orders'
 })
 export class ResumePage {
 
-  newOrder: object
+  newOrder: any
+
+
   constructor(public navCtrl: NavController, 
     public navParams: NavParams, 
     public order: OrderProvider, 
     public api: ApiProvider) {
 
+      this.newOrder = {
+        user_id: '', 
+        pets: [], 
+        service: {}, 
+        payment: '', 
+        location: {}, 
+        address: ''
+     }
       this.newOrder = this.order.getOrder()
       console.log(this.newOrder)
   }
+
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ResumePage');
   }
 
+
   placeOrder(){
     console.log('Order is being placed')
-    this.api.post('order/new', this.newOrder)
-    .subscribe(data => {
-      data = JSON.parse(data['_body'])
-      
-     if(data.status == 0){
-        this.navCtrl.setRoot(OrdersPage)
-     }
-    })
+    // this.api.post('order/new', this.newOrder)
+    // .map(response => response.json())
+    // .subscribe(data => {      
+    //  if(data.status == 0){
+       //Order has been placed in server but havent started checkout
+        this.openCheckout()
+    //  }
+    // })
+  }
+
+
+  openCheckout() {
+    var handler = (<any>window).StripeCheckout.configure({
+      key: 'pk_test_w8JSfhJIp6WKdbiSeQm8MFK7',
+      locale: 'auto',
+      token:  (token: any) =>  {
+        this.newOrder['token'] = token
+        // You can access the token ID with `token.id`.
+        // Get the token ID to your server-side code for use.
+        this.api.post('order/new', this.newOrder).subscribe(res =>{
+          this.navCtrl.setRoot(OrdersPage)
+          console.log(res);
+        })
+        console.log(token)
+      }
+    });
+
+    handler.open({
+      name: 'GoodBoy!',
+      description: this.newOrder.service.name,
+      amount: Number(this.newOrder.service.cost) * 100, 
+      currency: 'mxn'
+    });
+
   }
 
 }
