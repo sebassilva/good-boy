@@ -6,7 +6,6 @@ import { CurrencyPipe } from '@angular/common';
 import { ApiProvider } from '../../providers/api/api';
 import { OrderProvider } from '../../providers/order/order';
 import { MapPage } from '../map/map';
-import { PaymentPage } from '../payment/payment';
 
 
 @IonicPage()
@@ -34,7 +33,6 @@ export class SelectServicePage {
   serviceSelected(service){
     this.order.setService(service)
     this.navCtrl.push(MapPage)
-    //  this.navCtrl.push(PaymentPage)
     console.log("Service selected: ")
     console.log(this.order.getService())
   }

@@ -28,7 +28,6 @@ import { RegisterProviderPage } from '../pages/register-provider/register-provid
 import { MainProviderPage } from '../pages/main-provider/main-provider';
 import { OrderInfoModalPage } from '../pages/order-info-modal/order-info-modal';
 import { ProviderLegalsPage } from '../pages/provider-legals/provider-legals';
-import { PaymentPage } from '../pages/payment/payment';
 
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -65,7 +64,6 @@ import { PayPal, PayPalPayment, PayPalConfiguration } from '@ionic-native/paypal
     MainProviderPage, 
     OrderInfoModalPage, 
     ProviderLegalsPage, 
-    PaymentPage
   ],
   imports: [
     BrowserModule,
@@ -95,7 +93,6 @@ import { PayPal, PayPalPayment, PayPalConfiguration } from '@ionic-native/paypal
     MainProviderPage, 
     OrderInfoModalPage, 
     ProviderLegalsPage, 
-    PaymentPage
   ],
   providers: [
     StatusBar,
