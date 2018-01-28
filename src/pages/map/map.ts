@@ -179,7 +179,7 @@ export class MapPage {
 
       let mapOptions = {
         center: latLng,
-        zoom: 15,
+        zoom: 17,
         mapTypeId: google.maps.MapTypeId.ROADMAP,
         zoomControl: false,
         mapTypeControl: false,
