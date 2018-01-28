@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angu
 import { ChooseDogPage } from '../choose-dog/choose-dog';
 import { OrderInfoModalPage } from '../order-info-modal/order-info-modal';
 
-import { Geolocation, Geoposition, PositionError } from '@ionic-native/geolocation';
+import { Geolocation } from '@ionic-native/geolocation';
 import { OrderProvider } from '../../providers/order/order';
 import { ApiProvider } from '../../providers/api/api';
 import { MainProviderPage } from '../main-provider/main-provider';
@@ -76,11 +76,9 @@ export class MapPage {
     if (this.isProvider) {
       var directionsService = new google.maps.DirectionsService;
       var directionsDisplay = new google.maps.DirectionsRenderer;
-      let latLng = new google.maps.LatLng(parseFloat(this.currentOrder.lat), parseFloat(this.currentOrder.lng))
       directionsDisplay.setMap(this.map);
 
       //Add marker for order and display route
-      // this.addMarker(latLng, 'Tu ubicación actual')
       this.calculateAndDisplayRoute(directionsService, directionsDisplay)
       this.positionInterval = setInterval(() => { this.autoUpdatePosition() }, 5000)
     }

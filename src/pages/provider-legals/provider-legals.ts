@@ -3,7 +3,6 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Storage } from '@ionic/storage'
 
 import { ApiProvider } from '../../providers/api/api'
-import { ToastController } from 'ionic-angular';
 import { DomSanitizer } from '@angular/platform-browser';
 import { OrderProvider } from '../../providers/order/order'
 import { Camera, CameraOptions } from '@ionic-native/camera';

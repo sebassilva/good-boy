@@ -1,9 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
-import { Http, HttpModule } from '@angular/http'
+import { HttpModule } from '@angular/http'
 import { IonicStorageModule } from '@ionic/storage';
-import { Storage } from '@ionic/storage';
 import { Geolocation } from '@ionic-native/geolocation';
 
 import { MyApp } from './app.component';
@@ -40,7 +39,6 @@ import { ResumePage } from '../pages/resume/resume';
 
 import { Camera } from '@ionic-native/camera';
 
-import { PayPal, PayPalPayment, PayPalConfiguration } from '@ionic-native/paypal';
 
 @NgModule({
   declarations: [
@@ -102,7 +100,6 @@ import { PayPal, PayPalPayment, PayPalConfiguration } from '@ionic-native/paypal
     OrderProvider,
     ApiProvider, 
     Camera, 
-    PayPal
     ]
 })
 

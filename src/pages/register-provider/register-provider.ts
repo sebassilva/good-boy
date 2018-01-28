@@ -3,7 +3,6 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Http } from '@angular/http'
 import { Storage } from '@ionic/storage';
-import { MainProviderPage } from '../main-provider/main-provider';
 import { ProviderLegalsPage } from '../provider-legals/provider-legals';
 
 import { OrderProvider } from '../../providers/order/order';

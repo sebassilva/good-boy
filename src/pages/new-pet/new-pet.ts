@@ -7,8 +7,6 @@ import { SelectServicePage } from '../select-service/select-service'
 import { ApiProvider } from '../../providers/api/api'
 
 import { DomSanitizer } from '@angular/platform-browser'
-import {  ActionSheetController, Platform, LoadingController, Loading } from 'ionic-angular'
-import { OrderProvider } from '../../providers/order/order'
 import { Camera, CameraOptions } from '@ionic-native/camera'
 import { AlertController } from 'ionic-angular/components/alert/alert-controller';
 

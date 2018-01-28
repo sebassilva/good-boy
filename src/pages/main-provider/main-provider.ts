@@ -3,7 +3,6 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ApiProvider } from '../../providers/api/api'
 import { OrderProvider } from '../../providers/order/order'
 import { MapPage } from '../map/map'
-import { OrderInfoModalPage } from '../order-info-modal/order-info-modal';
 
 
 @IonicPage()

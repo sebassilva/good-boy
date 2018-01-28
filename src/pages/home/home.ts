@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { LoginPage } from '../login/login'
 import { RegisterPage } from '../register/register'
-import { MainPage } from '../main/main'
 import { SelectServicePage } from '../select-service/select-service'
 import { HomeProviderPage } from '../home-provider/home-provider'
 import { MainProviderPage } from '../main-provider/main-provider'

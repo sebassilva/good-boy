@@ -13,7 +13,6 @@ import {  ActionSheetController, Platform, LoadingController, Loading } from 'io
 import { OrderProvider } from '../../providers/order/order'
 import { Camera, CameraOptions } from '@ionic-native/camera';
 
-declare var cordova: any;
 
 @IonicPage()
 

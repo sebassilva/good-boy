@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 
-import { CurrencyPipe } from '@angular/common';
 import { ApiProvider } from '../../providers/api/api';
 import { OrderProvider } from '../../providers/order/order';
 import { MapPage } from '../map/map';
