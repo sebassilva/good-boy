@@ -14,10 +14,10 @@ export class ApiProvider {
   user_type: string
   constructor(public http: Http, public toastCtrl: ToastController, public storage: Storage) {
     console.log('Hello ApiProvider Provider');
-    // this.apiUrl = "http://booxlab.com/goodboy/api/"
-    // this.baseUrl = "http://booxlab.com/goodboy/"
-    this.apiUrl = "http://localhost/api/" 
-    this.baseUrl = "http://localhost/"
+    this.apiUrl = "http://booxlab.com/goodboy/api/"
+    this.baseUrl = "http://booxlab.com/goodboy/"
+    // this.apiUrl = "http://localhost/api/" 
+    // this.baseUrl = "http://localhost/"
     this.storage.get('user_id').then(user_id =>{
       this.user_id = user_id
     })

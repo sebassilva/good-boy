@@ -77,4 +77,8 @@
   margin-top: 5px;
 }
 
+.list-md .item-block .item-inner, .list-ios .item-block .item-inner, .list-ios > .item-block:last-child, .list-ios > .item-wrapper:last-child .item-block{
+  border-bottom: 1px solid color($colors, primary);
+}
+
 
