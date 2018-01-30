@@ -2,21 +2,21 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Selecciona tu Servicio</ion-title>
+    <ion-title>goodboy</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content  >
-    <h5 text-center padding>¿Qué servicio necesita tu mascota?</h5> 
+    <h1 text-center padding>Selecciona el servicio</h1> 
     <ion-scroll scrollX style="height:500px;" padding-top>
         <div class="scroll-item" *ngFor="let service of services">
             <div class="button-round" (click)="serviceSelected(service)">
               </div>
-              <div class="title" text-center><h4>{{service.name}}</h4></div>
-              <div class="description" text-center><h5>{{service.description}}</h5></div>
-              <div class="cost" text-center><h6>{{service.cost | currency}}</h6></div>
+              <div class="title" text-center><h3>{{service.name}}</h3></div>
+              <div class="description" text-center><p>{{service.description}}</p></div>
+              <div class="cost" text-center><p><b>{{service.cost | currency}}</b></p></div>
         </div>
 
                       

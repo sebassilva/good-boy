@@ -2,7 +2,7 @@
 <ion-header>
   
   <ion-navbar>
-    <ion-title>Login Provider</ion-title>
+    <ion-title>goodboy</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -11,9 +11,8 @@
 <ion-content padding>
 
     <ion-list>
-        
+        <h1 text-center padding-top>Inicia Sesión</h1>
            <form [formGroup]="userForm">
-
                <ion-item>
                   <ion-label floating>Correo</ion-label>
                   <ion-input formControlName="email" type="email"></ion-input>
@@ -25,7 +24,7 @@
               </ion-item> 
 
            </form>
-           <button ion-button full color="secondary" (click)="login()">Iniciar Sesión</button>             
+           <button ion-button full color="secondary" (click)="login()" margin-top>Iniciar Sesión</button>             
        </ion-list>
 
 </ion-content>

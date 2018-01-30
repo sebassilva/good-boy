@@ -1,6 +1,6 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>GoodBoy!</ion-title>
+    <ion-title>goodboy</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -10,10 +10,15 @@
 
   <ion-list>
     
-    
+      <h1 text-center padding-top> Prestadores de Servicios</h1>
+      <div logo-container padding-top text-center>
+          <img src="assets/imgs/logo.png" class="logo">
+          <h1 class="logoText" no-padding >good boy</h1>
+        </div>
+        
       <div padding-top>
-        <button ion-button full [navPush]="login">Iniciar Sesión</button>
-        <button ion-button full color="secondary" [navPush]="register">Registrarse</button> 
+        <button ion-button full [navPush]="login" color="primary" margin-top>Iniciar Sesión</button>
+        <button ion-button full color="secondary" [navPush]="register" >Registrarse</button> 
       </div>
 
     </ion-list>

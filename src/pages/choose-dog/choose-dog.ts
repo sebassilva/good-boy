@@ -22,6 +22,7 @@ export class ChooseDogPage {
       this.api.post('user/pets', {user_id: this.order.getUserId()})
       .map(res => res.json())
       .subscribe(dogs =>{
+        console.log(dogs)
         dogs.forEach(dog => dog.img = (dog.img != 'default') ? this.api.getBaseUrl() + 'img/pets/' + dog.img : null)
         this.dogs = dogs
         console.log(this.dogs)

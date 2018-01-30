@@ -27,13 +27,14 @@ import { RegisterProviderPage } from '../pages/register-provider/register-provid
 import { MainProviderPage } from '../pages/main-provider/main-provider';
 import { OrderInfoModalPage } from '../pages/order-info-modal/order-info-modal';
 import { ProviderLegalsPage } from '../pages/provider-legals/provider-legals';
+import { ResumePage } from '../pages/resume/resume';
+import { CurrentOrderPage } from '../pages/current-order/current-order';
 
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { OrderProvider } from '../providers/order/order';
 import { ApiProvider } from '../providers/api/api';
-import { ResumePage } from '../pages/resume/resume';
 
 /*camer plugins*/
 
@@ -62,6 +63,7 @@ import { Camera } from '@ionic-native/camera';
     MainProviderPage, 
     OrderInfoModalPage, 
     ProviderLegalsPage, 
+    CurrentOrderPage
   ],
   imports: [
     BrowserModule,
@@ -91,6 +93,7 @@ import { Camera } from '@ionic-native/camera';
     MainProviderPage, 
     OrderInfoModalPage, 
     ProviderLegalsPage, 
+    CurrentOrderPage
   ],
   providers: [
     StatusBar,

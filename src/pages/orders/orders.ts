@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ApiProvider } from '../../providers/api/api';
 import { OrderProvider } from '../../providers/order/order';
 import { Storage } from '@ionic/storage'
+import { CurrentOrderPage } from '../current-order/current-order'
 
 @IonicPage()
 @Component({
@@ -30,6 +31,12 @@ export class OrdersPage {
       })
 
      
+    }
+
+
+    viewCurrentOrder(order){
+      this.navCtrl.push(CurrentOrderPage, order)
+
     }
 
   ionViewDidLoad() {

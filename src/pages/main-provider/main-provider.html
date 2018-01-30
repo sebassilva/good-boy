@@ -2,7 +2,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Main Provider</ion-title>
+    <ion-title>goodboy</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -12,7 +12,7 @@
 
 
     <h4 text-center>Órdenes en Curso</h4>
-    <h4 *ngIf="!currentOrders">No hay órdenes en curso</h4>
+    <p *ngIf="!currentOrders">No hay órdenes en curso</p>
     <ion-card *ngFor="let order of currentOrders">
       <img src="assets/imgs/shower-dog.png"/>
       <ion-card-content>
@@ -32,7 +32,7 @@
 
   
   <h4 text-center>Nuevas órdenes</h4>
-  <h4 *ngIf="!newOrders">No hay órdenes disponibles</h4>
+  <p *ngIf="!newOrders">No hay órdenes disponibles</p>
   <ion-card *ngFor="let order of newOrders">
     <img src="assets/imgs/shower-dog.png"/>
     <ion-card-content>

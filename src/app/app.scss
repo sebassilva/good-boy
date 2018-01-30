@@ -26,10 +26,55 @@
   $font-family-ios-base: "Comfortaa";
   $font-family-wp-base: "Comfortaa";
 
-  h1, h2, h3{
-      font-family: 'Comfortaa'
+  * {
+    font-family: 'Comfortaa';
+    color: color($colors, third); 
   }
 
-  a, p, .logoText{
-      color: color($colors, third)
+    .back-button{
+        font-family: 'Comfortaa';
+        color: color($colors, primary);
+    }
+    h1, h2, h3, h4, h5, h6{
+      color: color($colors, secondary);
+      
+    }
+    a, p, .logoText{
+        color: color($colors, third);
+    }
+
+  [color="primary"]{
+    background-color:color($colors, primary);
+    }
+
+    [color="primary"] span {
+        color:white !important;
+    }
+
+  [color="secondary"]{
+    background-color:white;
+    color:color($colors, third);
+    border: color($colors, secondary) 1px solid;
+    border-radius: 1px
   }
+
+  ion-header ion-icon.back-button-icon.icon, ion-header button span{
+    color: map-get($colors, primary);
+  }
+
+  .toolbar-title{
+    color: color($colors, third); 
+  }
+
+.logo{
+  height: 150px;
+  width: 150px;
+}
+.loginButtons{
+  padding-top: 25px;
+}
+.logoText{
+  margin-top: 5px;
+}
+
+
