@@ -1,3 +1,20 @@
 page-home {
+    .logo{
+        height: 150px;
+        width: 150px;
+    }
+    .loginButtons{
+        padding-top: 25px;
+    }
+    .logoText{
+        margin-top: 5px;
+    }
 
+    .whiteButton{
+        background-color:white;
+        color:color($colors, third);
+        border: color($colors, secondary) 1.5px solid;
+        border-radius: 1px
+
+    }
 }

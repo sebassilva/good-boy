@@ -5,15 +5,17 @@
 
   <ion-list>
     
-    
-      <div padding-top>
-        <button ion-button full [navPush]="login">Iniciar Sesión</button>
-        <button ion-button full color="secondary" [navPush]="register">Registrarse</button> 
-        <p text-center><a [navPush]="homeProvider">Soy prestador de servicios</a></p> 
+      <div padding-top padding-bottom text-center>
+        <div logo-container padding-top>
+          <img src="assets/imgs/logo.png" class="logo">
+          <h1 class="logoText" no-padding >good boy</h1>
+        </div>
+        <div class="loginButtons">
+            <button ion-button full [navPush]="login" color="secondary" margin-top> Iniciar Sesión</button>
+            <button ion-button full  class="whiteButton" [navPush]="register" margin-top>Registrarse</button> 
+            <p text-center><a [navPush]="homeProvider">Soy prestador de servicios</a></p> 
+        </div>
       </div>
-
     </ion-list>
-
-
     
 </ion-content>
