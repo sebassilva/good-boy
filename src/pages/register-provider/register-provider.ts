@@ -55,14 +55,14 @@ export class RegisterProviderPage {
       newUser['docAddress'] = ""
 
       this.api.post('provider/new', newUser)
+      .map(res => res.json())
       .subscribe(data => {
-        data = data.json()
         if(data.status == 0){
-          console.log(data['api_token'])
-          this.storage.set('api_token', data['api_token'])
-          this.storage.set('user_id', data['user']['id'])
+          console.log(data.api_token)
+          this.storage.set('api_token', data.api_token)
+          this.storage.set('user_id', data.user.id)
           this.storage.set('is_provider', true)
-          this.order.setUserId(data['user']['id'])
+          this.order.setUserId(data.user.id)
           this.navCtrl.setRoot( ProviderLegalsPage )
   
         }else{
