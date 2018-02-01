@@ -7,9 +7,9 @@
 
   <ion-content>
     <ion-list>
-        <button menuClose ion-item (click)="home()" text-center>
+        <!-- <button menuClose ion-item (click)="home()" text-center>
           <img src="assets/imgs/logo.png" alt="" height="100px">
-        </button> 
+        </button>  -->
       <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
         {{p.title}}
       </button>
