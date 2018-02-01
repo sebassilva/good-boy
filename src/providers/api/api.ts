@@ -36,7 +36,7 @@ export class ApiProvider {
   post(url, data){
     console.log(this.api_token, this.user_id)
     let headers = new Headers();
-    if(this.api_token && this.user_type){
+    if(this.api_token){
       headers.append('Token', this.api_token)
       headers.append('User', this.user_id)
       headers.append('Type', this.user_type)
