@@ -46,13 +46,13 @@ export class LoginProviderPage {
       .map(res => res.json())
       .subscribe(data => {
         if(data.status == 0){
+          console.log(data)
           this.storage.set('api_token', data.api_token)
           this.storage.set('user_id', data.user.id)
           this.order.setUserId(data.user.id)
           this.storage.set('is_provider', true)
-
-          this.navCtrl.setRoot( MainProviderPage )
           this.order.setUserId(data.user.id)
+          this.navCtrl.setRoot( MainProviderPage )
 
         }else{
           this.api.showNotification(data['message'])

@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ApiProvider } from '../../providers/api/api'
 import { OrderProvider } from '../../providers/order/order'
 import { MapPage } from '../map/map'
+import { CurrentOrderPage } from '../current-order/current-order'
 
 
 @IonicPage()
@@ -26,12 +27,14 @@ export class MainProviderPage {
     this.api.post('provider/orders/active', {user_id: this.order.getUserId()})
     .map(res =>res.json())
     .subscribe(data =>{
-      this.newOrders = data.data
+      if(data.data)
+      this.newOrders = data.data.reverse()
     })
 
     this.api.post('provider/orders/current', {user_id: this.order.getUserId()})
     .map(res =>res.json())
     .subscribe(data =>{
+      if(data.data)
       this.currentOrders = data.data
     })
   }
@@ -53,6 +56,10 @@ export class MainProviderPage {
 
       this.api.showNotification(data['message'])
     })
+  }
+
+  viewCurrent(order){
+    this.navCtrl.push(MapPage, order)
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad MainProviderPage');

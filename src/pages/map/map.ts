@@ -51,10 +51,12 @@ export class MapPage {
       lng: this.navParams.get('lng'),
       pet: this.navParams.get('pet'),
       service: this.navParams.get('service'),
+      status_id: this.navParams.get('status_id')
     }
+    console.log(this.currentOrder)
     this.timeRemaining = null
-    this.isInCourse = false
-
+    this.isInCourse = (this.currentOrder.status_id == 5)
+    
   }
 
 
@@ -80,6 +82,7 @@ export class MapPage {
 
       //Add marker for order and display route
       this.calculateAndDisplayRoute(directionsService, directionsDisplay)
+      if (this.positionInterval)  clearInterval(this.positionInterval) 
       this.positionInterval = setInterval(() => { this.autoUpdatePosition() }, 5000)
     }
   }
@@ -143,6 +146,7 @@ export class MapPage {
       }
       console.log(data)
     })
+
 
 
   }
@@ -317,5 +321,11 @@ export class MapPage {
     });
   }
 
+
+
+  viewWillLeave(){
+    console.log('position inverval cleared')
+   clearInterval(this.positionInterval)   
+  }
 
 }
