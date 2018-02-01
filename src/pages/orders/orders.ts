@@ -25,8 +25,9 @@ export class OrdersPage {
         this.api.post(url + this.order.getUserId(), {user_id: this.order.getUserId()})
         .map(response => response.json())
         .subscribe(data =>{
-          this.currentOrders = data.data.filter((order) => order.status_id < 6)
-          this.finishedOrders = data.data.filter((order) => order.status_id >= 6)
+          if(this.currentOrders)
+            this.currentOrders = data.data.filter((order) => order.status_id < 6).reverese()
+            this.finishedOrders = data.data.filter((order) => order.status_id >= 6).reverse()
         })
       })
 
