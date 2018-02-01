@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ApiProvider } from '../../providers/api/api';
 import { OrderProvider } from '../../providers/order/order';
 import { OrdersPage } from '../orders/orders'
+import { Storage } from '@ionic/storage';
 
 
 @IonicPage()
@@ -18,18 +19,23 @@ export class ResumePage {
   constructor(public navCtrl: NavController, 
     public navParams: NavParams, 
     public order: OrderProvider, 
-    public api: ApiProvider) {
-
+    public api: ApiProvider, 
+    public storage: Storage) {
       this.newOrder = {
         user_id: '', 
         pets: [], 
         service: {}, 
         payment: '', 
         location: {}, 
-        address: ''
+        address: '', 
+        email: ''
      }
-      this.newOrder = this.order.getOrder()
-      console.log(this.newOrder)
+      this.storage.get('email').then(email => {
+        this.newOrder = this.order.getOrder()
+        this.newOrder.email = email
+        console.log(this.newOrder)
+      })
+   
   }
 
 
@@ -71,7 +77,12 @@ export class ResumePage {
       name: 'GoodBoy!',
       description: this.newOrder.service.name,
       amount: Number(this.newOrder.service.cost) * 100, 
-      currency: 'mxn'
+      locale: 'es', 
+      image: '', 
+      allowRememberMe: true, 
+      label: 'Pagar ahora',
+      currency: 'mxn', 
+      email: this.newOrder.email
     });
 
   }

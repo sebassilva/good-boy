@@ -57,6 +57,7 @@ export class RegisterPage {
           this.storage.set('user_id', data.user.id)
           this.storage.set('is_provider', false)
           this.order.setUserId(data.user.id)
+          this.storage.set('email', data.user.email)
           this.navCtrl.setRoot( NewPetPage )
   
         }else{

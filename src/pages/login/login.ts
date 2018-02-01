@@ -54,6 +54,7 @@ export class LoginPage {
           this.storage.set('api_token', data.api_token)
           this.storage.set('user_id', data.user.id)
           this.storage.set('is_provider', false)
+          this.storage.set('email', data.user.email)
           this.navCtrl.setRoot( SelectServicePage )
           this.order.setUserId(data.user.id)
         }else{
