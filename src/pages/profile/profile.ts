@@ -80,7 +80,7 @@ export class ProfilePage {
       this.api.post('user/pets', {user_id: user_id})
       .map(response => response.json())
       .subscribe(dogs =>{
-        dogs.forEach(dog => dog.img = this.api.getBaseUrl() + 'img/pets/' + dog.img)
+        dogs.forEach(dog => dog.img = (dog.img != 'default') ? this.api.getBaseUrl() + 'img/pets/' + dog.img : null)
         this.dogs = dogs
       })
 
@@ -116,7 +116,7 @@ export class ProfilePage {
       .map(response => response.json())
       .subscribe(user=>{
         this.userId = user.id
-        this.imgPreview = this.api.getBaseUrl() + 'img/avatars/' +user.img
+        this.imgPreview = (user.img) ? this.api.getBaseUrl() + 'img/avatars/' + user.img : null
         this.userForm.setValue({
           name: user.name,
           lastname: user.lastname,

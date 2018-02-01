@@ -57,7 +57,7 @@
 
         <ion-item *ngFor="let dog of dogs" (click)="editDog(dog)">
             <ion-avatar item-start>
-                <img [src]="dog.img">
+                <img [src]="dog.img" *ngIf="dog.img">
             </ion-avatar>
             <h2>{{dog.name}}</h2>
             <h3>{{dog.breed}}</h3>
