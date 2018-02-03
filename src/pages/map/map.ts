@@ -323,9 +323,17 @@ export class MapPage {
 
 
 
-  viewWillLeave(){
-    console.log('position inverval cleared')
-   clearInterval(this.positionInterval)   
+  viewWillDiseappear(){
+    if (this.positionInterval)
+      clearInterval(this.positionInterval)
   }
+
+
+  viewWillLeave(){
+    if (this.positionInterval)
+      clearInterval(this.positionInterval)
+  }
+
+
 
 }

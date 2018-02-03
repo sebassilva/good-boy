@@ -156,6 +156,13 @@ export class CurrentOrderPage {
 
 
   viewWillDiseappear(){
-    clearInterval(this.positionInterval)
+    if (this.positionInterval)
+      clearInterval(this.positionInterval)
+  }
+
+
+  viewWillLeave(){
+    if (this.positionInterval)
+      clearInterval(this.positionInterval)
   }
 }
