@@ -96,7 +96,7 @@ export class ProfilePage {
       .map(response => response.json())
       .subscribe(user=>{
         this.userId = user.id
-        this.imgPreview = this.imgPreview ? this.api.getBaseUrl() + 'img/avatars/' +user.img : null
+        this.imgPreview = user.img ? this.api.getBaseUrl() + 'img/avatars/' +user.img : null
         this.userForm.setValue({
           name: user.name,
           lastname: user.lastname,
@@ -223,10 +223,14 @@ export class ProfilePage {
       }
 
       this.storage.get('is_provider').then(is_provider => {
-        let url = is_provider ? 'user/profilePicture' : 'provider/profilePicture'
+        let url = is_provider ? 'provider/profilePicture/' : 'user/profilePicture/'
+        this.api.showNotification("Subiendo imagen")
+
         this.api.post(url + postData.user_id, postData)
         .map(response => response.json())
         .subscribe(data => {
+          console.log('enviando img')
+          console.log(data)
           this.api.showNotification(data.message)
         })
       })
