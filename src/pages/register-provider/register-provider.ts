@@ -58,11 +58,13 @@ export class RegisterProviderPage {
       .map(res => res.json())
       .subscribe(data => {
         if(data.status == 0){
+          data['is_provider'] = true
           console.log(data.api_token)
           this.storage.set('api_token', data.api_token)
           this.storage.set('user_id', data.user.id)
           this.storage.set('is_provider', true)
           this.order.setUserId(data.user.id)
+          this.api.update({data})
           this.navCtrl.setRoot( ProviderLegalsPage )
   
         }else{

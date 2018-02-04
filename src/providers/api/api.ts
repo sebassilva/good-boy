@@ -59,4 +59,13 @@ export class ApiProvider {
   }
 
 
+  update(data){
+    this.user_id = data.user.id
+    this.api_token = data.api_token
+    this.user_type = data.is_provider ? 'provider' : 'user'
+
+    console.log(this.user_id, this.api_token, this.user_type)
+
+  }
+  
 }

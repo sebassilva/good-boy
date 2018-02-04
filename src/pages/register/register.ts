@@ -52,12 +52,15 @@ export class RegisterPage {
       .map(response => response.json())
       .subscribe(data => {
         if(data.status == 0){
+          data['is_provider'] = false
+
           console.log(data.api_token)
           this.storage.set('api_token', data.api_token)
           this.storage.set('user_id', data.user.id)
           this.storage.set('is_provider', false)
           this.order.setUserId(data.user.id)
           this.storage.set('email', data.user.email)
+          this.api.update(data)
           this.navCtrl.setRoot( NewPetPage )
   
         }else{

@@ -47,11 +47,13 @@ export class LoginProviderPage {
       .subscribe(data => {
         if(data.status == 0){
           console.log(data)
+          data['is_provider'] = true
           this.storage.set('api_token', data.api_token)
           this.storage.set('user_id', data.user.id)
           this.order.setUserId(data.user.id)
           this.storage.set('is_provider', true)
           this.order.setUserId(data.user.id)
+          this.api.update(data)
           this.navCtrl.setRoot( MainProviderPage )
 
         }else{

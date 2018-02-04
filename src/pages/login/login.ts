@@ -51,10 +51,14 @@ export class LoginPage {
         console.log(data)
         if(data.status === 0){
           console.log(data.api_token)
+          data['is_provider'] = false
+
           this.storage.set('api_token', data.api_token)
           this.storage.set('user_id', data.user.id)
           this.storage.set('is_provider', false)
           this.storage.set('email', data.user.email)
+
+          this.api.update(data)
           this.navCtrl.setRoot( SelectServicePage )
           this.order.setUserId(data.user.id)
         }else{
