@@ -20,6 +20,7 @@ export class SelectServicePage {
     public storage: Storage, 
     public api: ApiProvider, 
     public order: OrderProvider) {
+    this.api.update()
     this.api.get('service').subscribe(data => {
       this.services = data.data
     });

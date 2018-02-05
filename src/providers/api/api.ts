@@ -3,6 +3,7 @@ import { Http, RequestOptions, Headers } from '@angular/http'
 import { Storage } from '@ionic/storage'
 import 'rxjs/add/operator/map'
 import { ToastController } from 'ionic-angular';
+import { environment } from '../../environments/environment'
 
 @Injectable()
 export class ApiProvider {
@@ -14,10 +15,9 @@ export class ApiProvider {
   user_type: string
   constructor(public http: Http, public toastCtrl: ToastController, public storage: Storage) {
     console.log('Hello ApiProvider Provider');
-    this.apiUrl = "http://booxlab.com/goodboy/api/"
-    this.baseUrl = "http://booxlab.com/goodboy/"
-    // this.apiUrl = "http://localhost/api/" 
-    // this.baseUrl = "http://localhost/"
+    this.apiUrl = environment.apiUrl
+    this.baseUrl = environment.baseUrl
+
     this.storage.get('user_id').then(user_id =>{
       this.user_id = user_id
     })
@@ -58,11 +58,15 @@ export class ApiProvider {
     return this.baseUrl
   }
 
+  
+  update(){
+    return Promise.all([
+    this.storage.get('user_id').then(user_id => this.user_id = user_id), 
+    this.storage.get('api_token').then(api_token => this.api_token = api_token), 
+    this.storage.get('is_provider').then(is_provider => this.user_type = is_provider ? 'provider' : 'user')
+  ])
 
-  update(data){
-    this.user_id = data.user.id
-    this.api_token = data.api_token
-    this.user_type = data.is_provider ? 'provider' : 'user'
   }
+
   
 }

@@ -18,7 +18,10 @@ export class MainProviderPage {
     public navParams: NavParams, 
     public api: ApiProvider, 
     public order: OrderProvider) {
-      this.getOrders()
+      // Promise.all(this.api.update()).then(_ => {
+      //   this.getOrders()
+      // })
+      this.api.update().then(_ => this.getOrders())
   }
 
 

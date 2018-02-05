@@ -53,7 +53,6 @@ export class LoginProviderPage {
           this.order.setUserId(data.user.id)
           this.storage.set('is_provider', true)
           this.order.setUserId(data.user.id)
-          this.api.update(data)
           this.navCtrl.setRoot( MainProviderPage )
 
         }else{
