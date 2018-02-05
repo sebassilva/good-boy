@@ -58,7 +58,6 @@ export class LoginPage {
           this.storage.set('is_provider', false)
           this.storage.set('email', data.user.email)
 
-          this.api.update(data)
           this.navCtrl.setRoot( SelectServicePage )
           this.order.setUserId(data.user.id)
         }else{
