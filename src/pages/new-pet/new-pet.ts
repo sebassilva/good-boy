@@ -42,7 +42,7 @@ export class NewPetPage {
       })
       this.formComplete = false
       this.userForm = this.formBuilder.group({
-        name: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('[a-zA-Z ]*'), Validators.required])],
+        name: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('[a-zA-Z áéíóúÁÉÍÓÚ]*'), Validators.required])],
         breed: ['', Validators.compose([Validators.maxLength(20),  Validators.required])],
         profile: ['', Validators.compose([Validators.maxLength(20),  Validators.required])],
         food_id: ['', Validators.compose([Validators.maxLength(20),  Validators.required])],

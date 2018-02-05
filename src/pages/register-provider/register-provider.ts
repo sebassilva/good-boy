@@ -32,8 +32,8 @@ export class RegisterProviderPage {
         this.services = data.data
       });
       this.userForm = this.formBuilder.group({
-        name: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('[a-zA-Z ]*'), Validators.required])],
-        lastname: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('[a-zA-Z ]*'), Validators.required])],
+        name: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('[a-zA-Z áéíóúÁÉÍÓÚ]*'), Validators.required])],
+        lastname: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('[a-zA-Z áéíóúÁÉÍÓÚ]*'), Validators.required])],
         email: ['', Validators.compose([Validators.maxLength(30), Validators.required])],
         password: ['', Validators.compose([Validators.maxLength(30), Validators.required])],
         telephone: ['', Validators.compose([Validators.maxLength(12),  Validators.required])],
@@ -64,7 +64,7 @@ export class RegisterProviderPage {
           this.storage.set('user_id', data.user.id)
           this.storage.set('is_provider', true)
           this.order.setUserId(data.user.id)
-          this.api.update({data})
+          this.api.update(data)
           this.navCtrl.setRoot( ProviderLegalsPage )
   
         }else{
