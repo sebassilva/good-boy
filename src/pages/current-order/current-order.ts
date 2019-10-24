@@ -120,10 +120,9 @@ export class CurrentOrderPage {
 
 
   updateProviderPosition(){
-    let postData = {
-      id: this.currentOrder, 
-      user_id: this.currentOrder.user_id
-    }
+    let postData = this.currentOrder
+    postData['user_id'] =  this.currentOrder.user_id
+
     this.api.post('order/getCurrentStatus', postData)
     .map(res => res.json())
     .subscribe(order => {

@@ -23,6 +23,7 @@ export class NewPetPage {
   isEdition: boolean
   imgPreview: any
   base64Image
+  natures: any
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,    
@@ -39,6 +40,9 @@ export class NewPetPage {
 
       this.api.get('food').subscribe(foods => {
         this.foods = foods.data
+      })
+      this.api.get('natures').subscribe(natures => {
+        this.natures = natures.data
       })
       this.formComplete = false
       this.userForm = this.formBuilder.group({
@@ -84,7 +88,6 @@ export class NewPetPage {
       newUser['docVaccine'] = "default"
       newUser["rate"] = 5
       this.storage.get('user_id').then(user_id =>{
-        newUser.profile = newUser.profile.join('**')
 
         newUser["user_id"] = user_id
         this.api.post('pet/new', newUser)

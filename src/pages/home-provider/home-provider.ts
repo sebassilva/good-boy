@@ -27,6 +27,7 @@ export class HomeProviderPage {
     this.register = RegisterProviderPage;
     
     this.storage.get('api_token').then(val =>{
+
       if(val){
         this.storage.get('user_id').then(val =>{
           this.order.setUserId(val)
@@ -40,6 +41,8 @@ export class HomeProviderPage {
 
 
   ionViewDidLoad() {
+    this.navCtrl.setRoot( MainProviderPage )                  
+
     console.log('ionViewDidLoad HomeProviderPage');
   }
 

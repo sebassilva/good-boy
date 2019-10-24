@@ -92,7 +92,7 @@ export class MapPage {
     if(!this.isProvider){
       console.log('provider config', this.isProvider)
       this.getReverseGeocodingData(position.coords.latitude, position.coords.longitude)
-      this.map.addListener('center_changed', _ => {
+      this.map.addListener('dragend', _ => {
         this.location = { lat: this.map.getCenter().lat(), lng: this.map.getCenter().lng() }
         this.getReverseGeocodingData(this.location.lat, this.location.lng)
       })

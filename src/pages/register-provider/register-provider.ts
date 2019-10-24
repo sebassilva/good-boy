@@ -64,7 +64,7 @@ export class RegisterProviderPage {
           this.storage.set('user_id', data.user.id)
           this.storage.set('is_provider', true)
           this.order.setUserId(data.user.id)
-          this.api.update(data)
+          this.api.update()
           this.navCtrl.setRoot( ProviderLegalsPage )
   
         }else{

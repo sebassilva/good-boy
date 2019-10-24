@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { LoginPage } from '../login/login'
+import { MainPage } from '../main/main'
 import { RegisterPage } from '../register/register'
 import { SelectServicePage } from '../select-service/select-service'
 import { HomeProviderPage } from '../home-provider/home-provider'
@@ -25,7 +26,7 @@ export class HomePage {
   constructor(public navCtrl: NavController, 
     public storage: Storage, 
     public order: OrderProvider) {
-    this.login = LoginPage;
+    this.login = MainPage;
     this.register = RegisterPage;
     this.homeProvider = HomeProviderPage
     
